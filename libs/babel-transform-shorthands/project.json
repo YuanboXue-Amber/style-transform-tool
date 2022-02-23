@@ -1,0 +1,23 @@
+{
+  "root": "libs/babel-transform-shorthands",
+  "sourceRoot": "libs/babel-transform-shorthands/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/babel-transform-shorthands/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/babel-transform-shorthands"],
+      "options": {
+        "jestConfig": "libs/babel-transform-shorthands/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

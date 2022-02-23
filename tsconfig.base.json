@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fluentui-style-transform/babel-transform-shorthands": [
+        "libs/babel-transform-shorthands/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

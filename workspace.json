@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "babel-transform-shorthands": "libs/babel-transform-shorthands",
     "transform-styles": "apps/transform-styles"
   }
 }
