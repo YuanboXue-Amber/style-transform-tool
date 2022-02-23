@@ -2,14 +2,14 @@ import template from '@babel/template';
 import { supportedShorthandsKeys, allShorthandsKeys } from './shorthands';
 import { SHORTHANDS_KEYWORD_FOR_EASY_REPLACE } from './helper';
 
-export const transformShorthandsPlugin = ({ types: t }: any) => {
+export const transformShorthandsPlugin = ({ types: t }) => {
   return {
     visitor: {
-      ExportNamedDeclaration(path: any) {
+      ExportNamedDeclaration(path) {
         t.assertVariableDeclaration(path.node.declaration);
         t.assertVariableDeclarator(path.node.declaration.declarations[0]);
         path.traverse({
-          ObjectProperty(path: any) {
+          ObjectProperty(path) {
             if (t.isIdentifier(path.node.key)) {
               const key = path.get('key');
               const value = path.get('value');
@@ -20,7 +20,7 @@ export const transformShorthandsPlugin = ({ types: t }: any) => {
                 if (t.isStringLiteral(value)) {
                   newSource = `${SHORTHANDS_KEYWORD_FOR_EASY_REPLACE}.${keyName}(${value.node.value
                     .split(' ')
-                    .map((token: string) => `"${token.trim()}"`)
+                    .map((token) => `"${token.trim()}"`)
                     .join(', ')})`;
                 } else if (t.isMemberExpression(value)) {
                   newSource = `${SHORTHANDS_KEYWORD_FOR_EASY_REPLACE}.${keyName}(${value.toString()})`;
@@ -32,7 +32,7 @@ export const transformShorthandsPlugin = ({ types: t }: any) => {
                   );
                   newSource = `${SHORTHANDS_KEYWORD_FOR_EASY_REPLACE}.${keyName}(${currSourceWithoutQuotes
                     .split(' ')
-                    .map((token: string) =>
+                    .map((token) =>
                       token.trim()[0] === '$'
                         ? `\`${token.trim()}\``
                         : `"${token.trim()}"`

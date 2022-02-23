@@ -1,10 +1,5 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "strict": false,
-    "skipLibCheck": true,
-    "lib": ["ES2021.String"]
-  },
   "files": [],
   "include": [],
   "references": [

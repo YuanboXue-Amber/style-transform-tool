@@ -1,5 +1,5 @@
 import * as Babel from '@babel/core';
-import { transformShorthandsPlugin } from './babel-transform-shorthands';
+import { transformShorthandsPlugin } from './babel-transform-shorthands.js';
 
 describe('babel-transform-shorthands', () => {
   it('transform correctly', () => {
