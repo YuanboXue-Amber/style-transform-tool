@@ -1,7 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "transform-styles": "apps/transform-styles",
-    "transform-styles-e2e": "apps/transform-styles-e2e"
+    "transform-styles": "apps/transform-styles"
   }
 }
