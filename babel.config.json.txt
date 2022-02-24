@@ -1,7 +1,0 @@
-{
-  "presets": ["@babel/preset-typescript"],
-  "plugins": [
-    //  "./babel-amber-replace-token.js"
-    "./src/lib/babel-transform-namespaced-styles.js"
-  ]
-}
