@@ -1,6 +1,7 @@
 {
   "name": "@fluentui-style-transform/core",
   "version": "0.0.1",
+  "main": "src/index.js",
   "bin": {
     "ambertest": "./dist/src/cli/index.js"
   }
