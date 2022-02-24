@@ -3,11 +3,22 @@
   "sourceRoot": "libs/babel-transform-shorthands/src",
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/babel-transform-shorthands",
+        "tsConfig": "libs/babel-transform-shorthands/tsconfig.lib.json",
+        "packageJson": "libs/babel-transform-shorthands/package.json",
+        "main": "libs/babel-transform-shorthands/src/index.js",
+        "assets": ["libs/babel-transform-shorthands/*.md"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/babel-transform-shorthands/**/*.ts"]
+        "lintFilePatterns": ["libs/babel-transform-shorthands/**/*.js"]
       }
     },
     "test": {

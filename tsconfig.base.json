@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@fluentui-style-transform/babel-transform-shorthands": [
-        "libs/babel-transform-shorthands/src/index.ts"
+        "libs/babel-transform-shorthands/src/index.js"
       ]
     }
   },

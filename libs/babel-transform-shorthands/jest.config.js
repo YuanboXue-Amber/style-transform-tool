@@ -8,8 +8,7 @@ module.exports = {
   },
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[t]sx?$': 'ts-jest',
-    '^.+\\.js?$': 'babel-jest',
+    '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/babel-transform-shorthands',
