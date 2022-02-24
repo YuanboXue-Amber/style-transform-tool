@@ -17,7 +17,8 @@
     "paths": {
       "@fluentui-style-transform/babel-transform-shorthands": [
         "libs/babel-transform-shorthands/src/index.js"
-      ]
+      ],
+      "@fluentui-style-transform/core": ["libs/core/src/index.js"]
     }
   },
   "exclude": ["node_modules", "tmp"]
