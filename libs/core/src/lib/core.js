@@ -61,7 +61,7 @@ export const transformCode = (sourceCode) => {
   return transformShorthandsHelper(babelFileResult.code);
 };
 
-export const transformFile = (styleFilename) => {
+export const transformFile = (styleFilename, variables) => {
   const styleCode = fs.readFileSync(styleFilename, 'utf8');
 
   const mod = new Module(styleFilename, linariaOptions);
@@ -73,10 +73,7 @@ export const transformFile = (styleFilename) => {
 
   const computedStyles = styleF({
     theme: processedTheme,
-    variables: {
-      isCallingVolumeSliderDisabled: true,
-      isCallingPreJoinV2ComputerAudioVolumeSlider: true,
-    },
+    variables,
   });
   const computedStylesCode = `export const useStyles = makeStyles({root: ${JSON5.stringify(
     computedStyles

@@ -6,7 +6,12 @@ describe('transformWithLinaria', () => {
     const styleFilename = path.resolve(
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Slider/slider-styles.ts'
     );
-    expect(transformFile(styleFilename)).toMatchInlineSnapshot(`
+    expect(
+      transformFile(styleFilename, {
+        isCallingVolumeSliderDisabled: true,
+        isCallingPreJoinV2ComputerAudioVolumeSlider: true,
+      })
+    ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
         root: {
           '@media only screen and (max-width: undefined)': {
