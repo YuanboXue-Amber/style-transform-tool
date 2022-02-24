@@ -8,7 +8,7 @@ const JSON5 = require('json5');
 const {
   transformShorthandsHelper,
   transformShorthandsPlugin,
-} = require('../babel-plugin/babel-transform-shorthands');
+} = require('../babel-plugin');
 
 // recursively iterate thru an object, replace the value into key_value string
 const valueToString = (object, result, prefix = '') => {
