@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fluentui-style-transform/babel-transform-shorthands": [
-        "libs/babel-transform-shorthands/src/index.js"
-      ],
-      "@fluentui-style-transform/core": ["libs/core/src/index.js"]
+      "@fluentui-style-transform/core": ["libs/core/src/index.js"],
+      "@fluentui-style-transform/core/src/babel-plugin": [
+        "libs/core/src/babel-plugin/index.js"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

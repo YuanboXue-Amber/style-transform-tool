@@ -1,9 +1,15 @@
-import { BabelFileResult } from '@babel/core';
+import type { BabelFileResult } from '@babel/core';
 import * as Babel from '@babel/standalone';
+import template from '@babel/template';
+import type {
+  Identifier,
+  ObjectExpression,
+  ObjectProperty,
+} from '@babel/types';
 import {
   transformShorthandsHelper,
   transformShorthandsPlugin,
-} from '@fluentui-style-transform/babel-transform-shorthands';
+} from '@fluentui-style-transform/core/src/babel-plugin';
 
 export const plugins: any = {};
 
@@ -53,6 +59,32 @@ const isMultiSlot = ({ ast }: Pick<BabelFileResult, 'ast'>) => {
     )?.[0] as any
   )?.declaration?.declarations?.[0]?.init?.arguments?.[0].properties?.length;
   return slotsNum > 1;
+};
+
+export const getAllVariables = (code: string): string[] => {
+  const variables = new Set<string>();
+  try {
+    const transformedCode = Babel.transform(code, {
+      filename: 'example.ts',
+      presets: ['typescript'],
+      highlightCode: false,
+    });
+    const ast = template.program.ast(transformedCode.code as string);
+    const exportStmt = ast.body.find(
+      (node) => node.type === 'ExportDefaultDeclaration'
+    );
+    const slots = (exportStmt as any)?.declaration?.properties;
+    slots.forEach((slot: ObjectProperty) => {
+      const variableProperties = (slot.value as ObjectExpression)
+        .properties as ObjectProperty[];
+      variableProperties?.forEach((variableProperty: ObjectProperty) => {
+        variables.add((variableProperty.key as Identifier).name);
+      });
+    });
+    return Array.from(variables);
+  } catch (error) {
+    return [];
+  }
 };
 
 /// ------------ below is used for transform shorthands in style object

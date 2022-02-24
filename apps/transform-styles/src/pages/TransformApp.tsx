@@ -1,16 +1,13 @@
-import * as React from "react";
-import { Editor } from "../components/Editor";
-import * as Babel from "@babel/standalone";
-import template from "@babel/template";
-import { Identifier, ObjectExpression, ObjectProperty } from "@babel/types";
-import { VariablesContext } from "./variablesContext";
-import { ClickableVariablesRenderer } from "../components/ClickableVariablesRenderer";
-import { transformTokenInString } from "../lib/transformToken";
+import * as React from 'react';
+import { Editor } from '../components/Editor';
+import { VariablesContext } from './variablesContext';
+import { ClickableVariablesRenderer } from '../components/ClickableVariablesRenderer';
+import { transformTokenInString } from '../lib/transformToken';
 import {
   isUserCodeObject,
   TransformNameSpacedStyle,
   TransformShorthandsInStyleObject,
-} from "../loadBabel";
+} from '../loadBabel';
 import {
   ArrowUpIcon,
   Button,
@@ -21,41 +18,17 @@ import {
   InfoIcon,
   Text,
   Tooltip,
-} from "@fluentui/react-northstar";
-import { Link } from "react-router-dom";
-
-const getAllVariables = (code: string): string[] => {
-  const variables = new Set<string>();
-  try {
-    const transformedCode = Babel.transform(code, {
-      filename: "example.ts",
-      presets: ["typescript"],
-      highlightCode: false,
-    });
-    const ast = template.program.ast(transformedCode.code as string);
-    const exportStmt = ast.body.find(
-      (node) => node.type === "ExportDefaultDeclaration"
-    );
-    const slots = (exportStmt as any)?.declaration?.properties;
-    slots.forEach((slot: ObjectProperty) => {
-      const variableProperties = (slot.value as ObjectExpression)
-        .properties as ObjectProperty[];
-      variableProperties?.forEach((variableProperty: ObjectProperty) => {
-        variables.add((variableProperty.key as Identifier).name);
-      });
-    });
-    return Array.from(variables);
-  } catch (error) {
-    return [];
-  }
-};
+} from '@fluentui/react-northstar';
+import { Link } from 'react-router-dom';
 
 export function TransformApp({
   transformNameSpacedStyle,
   transformShorthandsInStyleObject,
+  getAllVariables,
 }: {
   transformNameSpacedStyle: TransformNameSpacedStyle;
   transformShorthandsInStyleObject: TransformShorthandsInStyleObject;
+  getAllVariables: (code: string) => string[];
 }) {
   const [userCode, setUserCode] = React.useState<string>(placeholderCode);
   const [selectedVariables, setSelectedVariables] = React.useState<string[]>(
@@ -72,7 +45,7 @@ export function TransformApp({
     allVariables = getAllVariables(userCode);
     const transformed = transformNameSpacedStyle(userCode, selectedVariables);
     showWarning = !!transformed.hasMultiSlots;
-    result = transformed?.code ?? transformed?.error ?? "";
+    result = transformed?.code ?? transformed?.error ?? '';
   }
 
   const variableContextValue = {
@@ -94,28 +67,28 @@ export function TransformApp({
     <VariablesContext.Provider value={variableContextValue}>
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           gap: 20,
           padding: 10,
           paddingBottom: 40,
           width: 1200,
-          maxWidth: "calc(100vw - 10px)",
+          maxWidth: 'calc(100vw - 10px)',
         }}
       >
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            marginRight: "auto",
+            display: 'flex',
+            alignItems: 'center',
+            marginRight: 'auto',
             padding: 10,
-            justifyContent: "space-between",
-            width: "100%",
+            justifyContent: 'space-between',
+            width: '100%',
           }}
         >
           <Text size="large">styles to makeStyles</Text>
-          <div style={{ display: "flex", gap: 10 }}>
+          <div style={{ display: 'flex', gap: 10 }}>
             <DialogHelper />
 
             <Button
@@ -131,21 +104,21 @@ export function TransformApp({
             <Button
               text
               content="View all color tokens"
-              style={{ textDecoration: "underline" }}
+              style={{ textDecoration: 'underline' }}
             />
           </Link>
         </div>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) 10px minmax(0, 1fr)",
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1fr) 10px minmax(0, 1fr)',
             padding: 10,
-            justifyContent: "space-evenly",
-            width: "100%",
+            justifyContent: 'space-evenly',
+            width: '100%',
           }}
         >
           <Editor
-            title={"Component Styles"}
+            title={'Component Styles'}
             code={userCode}
             onCodeChange={(newCode) => setUserCode(newCode)}
             TokenRenderer={ClickableVariablesRenderer}
@@ -153,7 +126,7 @@ export function TransformApp({
           />
           <div />
           <Editor
-            title={"Result"}
+            title={'Result'}
             code={result}
             showCopyButton
             alert={
@@ -161,7 +134,7 @@ export function TransformApp({
                 <Tooltip
                   trigger={
                     <div
-                      style={{ display: "flex", gap: 10, alignItems: "center" }}
+                      style={{ display: 'flex', gap: 10, alignItems: 'center' }}
                     >
                       <ExclamationTriangleIcon />
                       Multiple slots detected. Slots can be different on
@@ -170,8 +143,8 @@ export function TransformApp({
                   }
                   content={
                     <>
-                      You can get more information about converged components on{" "}
-                      <Text as="a" href={"https://aka.ms/fluentui-storybook"}>
+                      You can get more information about converged components on{' '}
+                      <Text as="a" href={'https://aka.ms/fluentui-storybook'}>
                         https://aka.ms/fluentui-storybook
                       </Text>
                     </>
@@ -196,7 +169,7 @@ const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
 
   React.useEffect(() => {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.pageYOffset > 300) {
         setShowButton(true);
       } else {
@@ -208,7 +181,7 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -220,7 +193,7 @@ const ScrollToTopButton = () => {
           iconOnly
           title="Create"
           onClick={scrollToTop}
-          style={{ position: "fixed", bottom: 60, left: "calc(50vw - 15px)" }}
+          style={{ position: 'fixed', bottom: 60, left: 'calc(50vw - 15px)' }}
         />
       }
       content="scroll to top"
@@ -241,7 +214,7 @@ const DialogHelper = () => {
       onConfirm={closeDialog}
       headerAction={{
         icon: <CloseIcon />,
-        title: "Close",
+        title: 'Close',
         onClick: closeDialog,
       }}
       onOpen={onOpen}
@@ -292,7 +265,7 @@ const Help = () => (
 );
 
 const Code = ({ children }: { children: React.ReactChild }) => (
-  <span style={{ fontFamily: "monospace" }}>{children}</span>
+  <span style={{ fontFamily: 'monospace' }}>{children}</span>
 );
 
 const objectExample = `{
@@ -311,7 +284,7 @@ const objectExample = `{
   },
 }`;
 
-const namespacedExampleSelectedVariables = ["taskManager"];
+const namespacedExampleSelectedVariables = ['taskManager'];
 const nameSpacedExample = `// box-namespace-debug.ts
 import {
   INamespacedOverrides,

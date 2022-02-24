@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const shaker = require('@linaria/shaker').default;
+import shakerEvaluator from '@linaria/shaker';
 const Module = require('@linaria/babel-preset').Module;
 const Babel = require('@babel/standalone');
 const { teamsV2Theme } = require('@fluentui/react-northstar');
@@ -8,7 +8,7 @@ const JSON5 = require('json5');
 const {
   transformShorthandsHelper,
   transformShorthandsPlugin,
-} = require('./babel-transform-shorthands');
+} = require('../babel-plugin/babel-transform-shorthands');
 
 // recursively iterate thru an object, replace the value into key_value string
 const valueToString = (object, result, prefix = '') => {
@@ -42,7 +42,7 @@ const options = {
   evaluate: true,
 
   rules: [
-    { action: shaker },
+    { action: shakerEvaluator },
     {
       test: /[/\\]node_modules[/\\]/,
       action: 'ignore',
