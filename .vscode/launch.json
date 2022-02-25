@@ -5,11 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch build command",
+      "request": "launch",
+      "runtimeArgs": ["nx", "test", "core"],
+      "runtimeExecutable": "/Users/yuanboxue/.nvm/versions/node/v16.4.0/bin/yarn",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+
+    {
       "name": "Launch Node on current file",
       "program": "${fileBasenameNoExtension}",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
+      "type": "pwa-node",
+      "runtimeExecutable": "/Users/yuanboxue/.nvm/versions/node/v16.4.0/bin/node"
     },
     {
       "name": "Debug Babel plugin",

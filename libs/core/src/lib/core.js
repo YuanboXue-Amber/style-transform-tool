@@ -12,7 +12,6 @@ import { hasToken, processedLightTheme } from './replace-siteVariables';
 const linariaOptions = {
   displayName: false,
   evaluate: true,
-
   rules: [
     { action: shakerEvaluator },
     {
@@ -25,6 +24,13 @@ const linariaOptions = {
     babelrc: false,
     presets: ['@babel/typescript'],
   },
+};
+
+const getExport = (styleFilename, exportName) => {
+  const styleCode = fs.readFileSync(styleFilename, 'utf8');
+  const mod = new Module(styleFilename, linariaOptions);
+  mod.evaluate(styleCode, [exportName]);
+  return mod.exports[exportName];
 };
 
 // style -----------
@@ -47,7 +53,7 @@ const transformTokenPlugin = () => {
   };
 };
 
-export const transformCode = (sourceCode) => {
+const transformTokenShorthands = (sourceCode) => {
   const babelFileResult = Babel.transform(sourceCode, {
     babelrc: false,
     configFile: false,
@@ -61,23 +67,84 @@ export const transformCode = (sourceCode) => {
   return transformShorthandsHelper(babelFileResult.code);
 };
 
-export const transformFile = (styleFilename, variables) => {
-  const styleCode = fs.readFileSync(styleFilename, 'utf8');
+const composeCodeFromMultiSlotStyles = (computedStyles) => {
+  let addSlotComments = Object.keys(computedStyles).length > 1;
 
-  const mod = new Module(styleFilename, linariaOptions);
-  mod.evaluate(styleCode, ['sliderStyles']);
+  let result = `export const useStyles = makeStyles({root: {`;
+  Object.entries(computedStyles).forEach(([slotName, styles]) => {
+    if (addSlotComments) {
+      result += `\n// styles from ${slotName} slot (❗️ slots can be different on v9 components)\n`;
+    }
+    const stylesStr = JSON5.stringify(styles);
+    result += stylesStr.slice(1, stylesStr.length - 1);
+    result += ',';
+  });
+  result += ` } })`;
+  return result;
+};
 
-  // TODO: I'm using only root slot here
-  const styleF = mod.exports.sliderStyles.root; // TODO: get theme from TMP, or at least all siteVariables
+export const transformFile = (styleFilename, exportName, variables) => {
+  const exports = getExport(styleFilename, exportName);
+
+  // TODO: get theme from TMP, or at least all siteVariables
   const processedTheme = processedLightTheme; // TODO: other theme
 
-  const computedStyles = styleF({
-    theme: processedTheme,
-    variables,
+  let computedStyles = {};
+  Object.keys(exports).forEach((slotName) => {
+    const styleF = exports[slotName];
+    if (styleF && typeof styleF === 'function') {
+      computedStyles[slotName] = styleF({
+        props: {},
+        theme: processedTheme,
+        variables,
+      });
+    }
   });
-  const computedStylesCode = `export const useStyles = makeStyles({root: ${JSON5.stringify(
-    computedStyles
-  )} })`;
 
-  return transformCode(computedStylesCode);
+  return transformTokenShorthands(
+    composeCodeFromMultiSlotStyles(computedStyles)
+  );
 };
+
+export const transformNamespacedFile = (
+  styleFilename,
+  exportName,
+  variable,
+  variableProps
+) => {
+  const exports = getExport(styleFilename, exportName);
+
+  let computedStyles = {};
+  Object.keys(exports).forEach((slotName) => {
+    const styleF = exports[slotName][variable];
+    if (styleF && typeof styleF === 'function') {
+      computedStyles[slotName] = styleF({
+        // TODO colorschemes
+        variableProps,
+      });
+    }
+  });
+
+  return transformTokenShorthands(
+    composeCodeFromMultiSlotStyles(computedStyles)
+  );
+};
+
+// const styleFilename =
+//   '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Slider/slider-styles.ts';
+
+// console.log(
+//   transformFile(styleFilename, 'sliderStyles', {
+//     isCallingVolumeSliderDisabled: true,
+//     isCallingPreJoinV2ComputerAudioVolumeSlider: true,
+//   })
+// );
+
+// const styleFilename =
+//   '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Card/card-namespace-edu.ts';
+
+// console.log(
+//   transformFile(styleFilename, 'default', {
+//     gridViewTeamCard: true,
+//   })
+// );
