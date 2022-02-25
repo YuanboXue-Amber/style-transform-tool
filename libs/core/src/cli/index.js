@@ -21,6 +21,23 @@ const questions = [
     separator: ',',
   },
   {
+    type: (_prev, value) => (isNamespaced(value.filename) ? null : 'select'),
+    name: 'hasComponentProps',
+    message: 'Are you using component props in styles?',
+    choices: [
+      { title: 'No', value: false },
+      { title: 'Yes', value: true },
+    ],
+    initial: 0,
+  },
+  {
+    type: (prev) => (prev ? 'text' : null),
+    name: 'componentProps',
+    message:
+      'What are the component props used? (specify an object as a string)',
+    initial: '',
+  },
+  {
     type: (_prev, value) => (isNamespaced(value.filename) ? 'text' : null),
     name: 'namespacedVariable',
     message: 'What is the variable name? (currently only accept 1)',
@@ -28,8 +45,8 @@ const questions = [
   },
   {
     type: (_prev, value) => (isNamespaced(value.filename) ? 'text' : null),
-    name: 'variableProps',
-    message: 'What is the variableProps, if any?',
+    name: 'namespacedVariableProps',
+    message: 'What is the namespacedVariableProps, if any?',
     initial: '',
   },
   {
@@ -70,8 +87,9 @@ const questions = [
     exportName,
     theme,
     variables,
+    componentProps,
     namespacedVariable,
-    variableProps,
+    namespacedVariableProps,
   } = response;
   const styleFilename = path.resolve(filename.trim());
 
@@ -82,17 +100,22 @@ const questions = [
     variables.forEach((variable) => {
       variablesObject[variable] = true;
     });
-    result = transformFile(styleFilename, exportName, variablesObject);
+    result = transformFile(
+      styleFilename,
+      exportName,
+      variablesObject,
+      JSON.parse(componentProps)
+    );
   } else {
-    let resolvedVariableProps = {};
-    if (variableProps) {
-      resolvedVariableProps = JSON.parse(variableProps);
+    let resolvedNamespacedVariableProps = {};
+    if (namespacedVariableProps) {
+      resolvedNamespacedVariableProps = JSON.parse(namespacedVariableProps);
     }
     result = transformFile(
       styleFilename,
       exportName,
       namespacedVariable,
-      resolvedVariableProps
+      resolvedNamespacedVariableProps
     );
   }
 

@@ -30,7 +30,7 @@ describe('transformWithLinaria', () => {
       });"
     `);
   });
-  it.only('should work again', () => {
+  it('should work again', () => {
     const styleFilename = path.resolve(
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-styles.ts'
     );
@@ -94,6 +94,44 @@ describe('transformWithLinaria', () => {
           // styles from icon slot (❗️ slots can be different on v9 components)
           marginRight: '0.2rem',
           ...shorthands.margin(\\"0\\", \\"1.8rem\\", \\"0\\", \\"1.3rem\\")
+        }
+      });"
+    `);
+  });
+  it.only('should work with component props', () => {
+    const styleFilename = path.resolve(
+      '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-styles.ts'
+    );
+    expect(
+      transformFile(
+        styleFilename,
+        'buttonStyles',
+        {
+          isDockedUbarCustomActionButton: true,
+        },
+
+        { disabled: true }
+      )
+    ).toMatchInlineSnapshot(`
+      "export const useStyles = makeStyles({
+        root: {
+          borderRadius: 0,
+          color: \`\${token.amberTemp}\`,
+          width: '4.8rem',
+          height: '4.8rem',
+          ':hover': {
+            color: \`\${token.amberTemp}\`
+          },
+          ':active': {
+            color: \`\${token.amberTemp}\`
+          },
+          '& .ui-icon': {
+            alignItems: 'center',
+            display: 'flex',
+            height: '4.6rem',
+            justifyContent: 'center',
+            width: '4.6rem'
+          }
         }
       });"
     `);

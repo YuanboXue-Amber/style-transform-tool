@@ -72,18 +72,25 @@ const composeCodeFromMultiSlotStyles = (computedStyles) => {
 
   let result = `export const useStyles = makeStyles({root: {`;
   Object.entries(computedStyles).forEach(([slotName, styles]) => {
-    if (addSlotComments) {
-      result += `\n// styles from ${slotName} slot (❗️ slots can be different on v9 components)\n`;
+    let stylesStr = JSON5.stringify(styles);
+    stylesStr = stylesStr.slice(1, stylesStr.length - 1);
+    if (stylesStr) {
+      if (addSlotComments) {
+        result += `\n// styles from ${slotName} slot (❗️ slots can be different on v9 components)\n`;
+      }
+      result += stylesStr + ',';
     }
-    const stylesStr = JSON5.stringify(styles);
-    result += stylesStr.slice(1, stylesStr.length - 1);
-    result += ',';
   });
   result += ` } })`;
   return result;
 };
 
-export const transformFile = (styleFilename, exportName, variables) => {
+export const transformFile = (
+  styleFilename,
+  exportName,
+  variables,
+  componentProps
+) => {
   const exports = getExport(styleFilename, exportName);
 
   // TODO: get theme from TMP, or at least all siteVariables
@@ -93,11 +100,14 @@ export const transformFile = (styleFilename, exportName, variables) => {
   Object.keys(exports).forEach((slotName) => {
     const styleF = exports[slotName];
     if (styleF && typeof styleF === 'function') {
-      computedStyles[slotName] = styleF({
-        props: {},
+      const slotStyle = styleF({
+        props: componentProps ?? {},
         theme: processedTheme,
         variables,
       });
+      if (Object.keys(slotStyle).length > 0) {
+        computedStyles[slotName] = slotStyle;
+      }
     }
   });
 
@@ -118,10 +128,13 @@ export const transformNamespacedFile = (
   Object.keys(exports).forEach((slotName) => {
     const styleF = exports[slotName][variable];
     if (styleF && typeof styleF === 'function') {
-      computedStyles[slotName] = styleF({
+      const slotStyle = styleF({
         // TODO colorschemes
         variableProps,
       });
+      if (Object.keys(slotStyle).length > 0) {
+        computedStyles[slotName] = slotStyle;
+      }
     }
   });
 
