@@ -98,7 +98,7 @@ describe('transformWithLinaria', () => {
       });"
     `);
   });
-  it.only('should work with component props', () => {
+  it('should work with component props', () => {
     const styleFilename = path.resolve(
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-styles.ts'
     );
