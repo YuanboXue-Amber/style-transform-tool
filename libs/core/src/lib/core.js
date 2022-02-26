@@ -92,8 +92,8 @@ export const transformFile = (
 ) => {
   const exports = getExport(styleFilename, exportName);
 
-  // TODO: get theme from TMP, or at least all siteVariables
-  const processedTheme = processedLightTheme; // TODO: other theme
+  // TODO!: get theme from TMP, or at least all siteVariables
+  const processedTheme = processedLightTheme; // TODO!: other theme
 
   let computedStyles = {};
   Object.keys(exports).forEach((slotName) => {

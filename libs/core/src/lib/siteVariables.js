@@ -47,7 +47,7 @@ export const namespaceTokensLight = getNamespaceTokens(processedLightTheme);
 
 export const hasToken = (str) => str.indexOf('siteVariables_colorScheme_') >= 0;
 
-// TODO what about non-color token
+// TODO! what about non-color token
 export const replaceTokens = (str) =>
   `\`${str
     .split(' ')

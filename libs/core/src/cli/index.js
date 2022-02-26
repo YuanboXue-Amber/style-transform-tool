@@ -16,7 +16,7 @@ const questions = [
   {
     type: (_prev, value) => (isNamespaced(value.filename) ? null : 'list'),
     name: 'variables',
-    // TODO none boolean objects?
+    // TODO! none boolean variables?
     message: 'What are the variables? (separate by comma)',
     initial: '',
     separator: ',',
