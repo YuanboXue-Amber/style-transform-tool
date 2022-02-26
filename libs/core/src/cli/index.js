@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import prompts from 'prompts';
-import { transformFile } from '../lib/core';
+import { transformFile, transformNamespacedFile } from '../lib/core';
 import path from 'path';
+import * as JSON5 from 'json5'; // json5 can parse without quotes
 
 const isNamespaced = (filename) =>
   filename.indexOf('-namespace-') > 0 ? true : false;
@@ -31,7 +32,8 @@ const questions = [
     initial: 0,
   },
   {
-    type: (prev) => (prev ? 'text' : null),
+    type: (prev, value) =>
+      !isNamespaced(value.filename) && prev ? 'text' : null,
     name: 'componentProps',
     message:
       'What are the component props used? (specify an object as a string)',
@@ -80,6 +82,7 @@ const questions = [
   },
 ];
 
+// TODO remove n* console log on 'You are running Fela in production mode'
 // TODO show a progress bar, cache theme
 (async () => {
   const response = await prompts(questions);
@@ -96,7 +99,7 @@ const questions = [
 
   let result;
 
-  if (isNamespaced(filename)) {
+  if (!isNamespaced(filename)) {
     const variablesObject = {};
     variables.forEach((variable) => {
       variablesObject[variable] = true;
@@ -105,14 +108,14 @@ const questions = [
       styleFilename,
       exportName,
       variablesObject,
-      JSON.parse(componentProps)
+      componentProps ? JSON5.parse(componentProps) : {}
     );
   } else {
-    let resolvedNamespacedVariableProps = {};
-    if (namespacedVariableProps) {
-      resolvedNamespacedVariableProps = JSON.parse(namespacedVariableProps);
-    }
-    result = transformFile(
+    const resolvedNamespacedVariableProps = namespacedVariableProps
+      ? JSON5.parse(namespacedVariableProps)
+      : {};
+
+    result = transformNamespacedFile(
       styleFilename,
       exportName,
       namespacedVariable,

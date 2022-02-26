@@ -1,14 +1,14 @@
-import mapping from "./mapping.json";
+import mapping from '@fluentui-style-transform/core/src/mapping';
 import {
   teamsLightTheme,
   teamsDarkTheme,
   teamsHighContrastTheme,
-} from "@fluentui/react-theme";
+} from '@fluentui/react-theme';
 import {
   teamsV2Theme,
   teamsDarkV2Theme,
   teamsHighContrastTheme as v0teamsHighContrastTheme,
-} from "@fluentui/react-northstar";
+} from '@fluentui/react-northstar';
 
 export const v0MappedSchemes = Object.keys(mapping);
 
@@ -35,11 +35,11 @@ export const getV9ColorValues = ({ scheme, token }) => {
 
 export const unifyColor = (color) =>
   color.length < 7
-    ? "#" +
+    ? '#' +
       color
         .slice(1)
-        .split("")
+        .split('')
         .map((d) => d + d)
-        .join("")
+        .join('')
         .toLowerCase()
     : color.toLowerCase();

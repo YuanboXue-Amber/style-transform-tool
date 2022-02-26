@@ -1,4 +1,5 @@
-import { processedLightTheme } from './siteVariables';
+import { processedLightTheme, replaceTokens } from './siteVariables';
+const mapping = require('../mapping.json');
 
 describe('siteVariables.spec', () => {
   it('processedLightTheme', () => {
@@ -1543,5 +1544,19 @@ describe('siteVariables.spec', () => {
         },
       }
     `);
+  });
+
+  it('replaceTokens', () => {
+    expect(mapping.default.foreground).toEqual('colorNeutralForeground1');
+    expect(
+      replaceTokens(
+        `1rem solid siteVariables_colorScheme_brand_foregroundDisabled1_#c7c7c7`
+      )
+    ).toMatchInlineSnapshot(`"\`1rem solid #c7c7c7\`"`);
+    expect(
+      replaceTokens(
+        `1rem solid siteVariables_colorScheme_default_background_#fff`
+      )
+    ).toMatchInlineSnapshot(`"\`1rem solid \${colorNeutralBackground1}\`"`);
   });
 });

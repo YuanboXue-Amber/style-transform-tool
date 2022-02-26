@@ -5,7 +5,8 @@
     "outDir": "./dist",
     "declaration": true,
     "types": ["node"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "exclude": [
     "**/*.spec.ts",
@@ -15,5 +16,5 @@
     "jest.config.js",
     "dist"
   ],
-  "include": ["**/*.ts", "**/*.js"]
+  "include": ["**/*.ts", "**/*.js", "**/mapping.json"]
 }

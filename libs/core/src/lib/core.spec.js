@@ -23,8 +23,8 @@ describe('transformWithLinaria', () => {
           // ❌ unsupported css property, please manually expand shorthand
           flex: 1,
           '& .ui-slider__rail': {
-            backgroundColor: \`\${token.amberTemp}\`,
-            ...shorthands.border(\\"1rem\\", \\"solid\\", \`\${token.amberTemp}\`)
+            backgroundColor: \`\${colorNeutralForegroundDisabled}\`,
+            ...shorthands.border(\\"1rem\\", \\"solid\\", \`\${colorNeutralForegroundDisabled}\`)
           }
         }
       });"
@@ -44,7 +44,7 @@ describe('transformWithLinaria', () => {
         root: {
           // styles from root slot (❗️ slots can be different on v9 components)
           ':hover': {
-            backgroundColor: \`\${token.amberTemp}\`,
+            backgroundColor: \`\${colorNeutralBackground1Hover}\`,
             ...shorthands.borderWidth(\\".1rem\\"),
             ...shorthands.borderColor(\\"transparent\\"),
             // ❌ unsupported css property, please manually expand shorthand
@@ -69,10 +69,10 @@ describe('transformWithLinaria', () => {
           maxWidth: 'calc(100% + 2.8rem)',
           boxShadow: 'none',
           width: 'calc(100% + 2.8rem)',
-          color: \`\${token.amberTemp}\`,
+          color: \`\${colorNeutralForeground1}\`,
           '&:focus-visible': {
             backgroundColor: 'transparent',
-            color: \`\${token.amberTemp}\`,
+            color: \`\${colorNeutralForeground1}\`,
             '::after': {
               left: '-.1rem',
               right: '-.1rem'
@@ -80,7 +80,7 @@ describe('transformWithLinaria', () => {
           },
           '&:hover': { ...shorthands.borderColor(\\"transparent\\"),
             '&:focus-visible': {
-              backgroundColor: \`\${token.amberTemp}\`
+              backgroundColor: \`\${colorNeutralBackground1Hover}\`
             }
           },
           marginBottom: '.6rem',
@@ -116,14 +116,14 @@ describe('transformWithLinaria', () => {
       "export const useStyles = makeStyles({
         root: {
           borderRadius: 0,
-          color: \`\${token.amberTemp}\`,
+          color: \`\${colorNeutralBackgroundDisabled}\`,
           width: '4.8rem',
           height: '4.8rem',
           ':hover': {
-            color: \`\${token.amberTemp}\`
+            color: \`\${colorNeutralBackgroundDisabled}\`
           },
           ':active': {
-            color: \`\${token.amberTemp}\`
+            color: \`#4f52b2\`
           },
           '& .ui-icon': {
             alignItems: 'center',
@@ -167,7 +167,7 @@ describe('transformWithLinaria', () => {
       "export const useStyles = makeStyles({
         root: {
           '& .ui-button__content': {
-            color: \`\${token.amberTemp}\`,
+            color: \`#5b5fc7\`,
             fontWeight: 'siteVariables_fontWeightRegular_400'
           }
         }

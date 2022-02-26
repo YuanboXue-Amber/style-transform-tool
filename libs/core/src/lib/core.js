@@ -9,6 +9,7 @@ import {
 } from '../babel-plugin';
 import {
   hasToken,
+  replaceTokens,
   processedLightTheme,
   namespaceTokensLight,
 } from './siteVariables';
@@ -38,19 +39,13 @@ const getExport = (styleFilename, exportName) => {
 };
 
 // style -----------
-const transformTokenPlugin = () => {
-  const replaceColorToken = (str) =>
-    `\`${str
-      .split(' ')
-      // TODO get the real token instead of token.amberTemp
-      .map((word) => (hasToken(word) ? `$\{token.amberTemp}` : word))
-      .join(' ')}\``;
 
+const transformTokenPlugin = () => {
   return {
     visitor: {
       StringLiteral(path) {
         if (path.node.value && hasToken(path.node.value)) {
-          path.replaceWithSourceString(replaceColorToken(path.node.value));
+          path.replaceWithSourceString(replaceTokens(path.node.value));
         }
       },
     },

@@ -18,6 +18,9 @@
       "@fluentui-style-transform/core": ["libs/core/src/index.js"],
       "@fluentui-style-transform/core/src/babel-plugin": [
         "libs/core/src/babel-plugin/index.js"
+      ],
+      "@fluentui-style-transform/core/src/mapping": [
+        "libs/core/src/mapping.json"
       ]
     }
   },
