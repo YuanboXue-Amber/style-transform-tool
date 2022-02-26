@@ -30,4 +30,18 @@ export const processedLightTheme = replaceSiteVaribles(teamsV2Theme);
 const processedDarkTheme = replaceSiteVaribles(teamsDarkV2Theme);
 const processedContrastTheme = replaceSiteVaribles(teamsHighContrastTheme);
 
+const getNamespaceTokens = (processedTheme) => ({
+  ...processedTheme.siteVariables,
+  colorSchemeDefault: processedTheme.siteVariables.colorScheme['default'],
+  colorSchemeBrand: processedTheme.siteVariables.colorScheme['brand'],
+  colorSchemePink: processedTheme.siteVariables.colorScheme['pink'],
+  colorSchemeRed: processedTheme.siteVariables.colorScheme['red'],
+  colorSchemeGreen: processedTheme.siteVariables.colorScheme['green'],
+  colorSchemeYellow: processedTheme.siteVariables.colorScheme['yellow'],
+  colorSchemeOrange: processedTheme.siteVariables.colorScheme['orange'],
+  colorSchemeOnyx: processedTheme.siteVariables.colorScheme['onyx'],
+  colorSchemeSilver: processedTheme.siteVariables.colorScheme['silver'],
+});
+export const namespaceTokensLight = getNamespaceTokens(processedLightTheme);
+
 export const hasToken = (str) => str.indexOf('siteVariables_colorScheme_') >= 0;

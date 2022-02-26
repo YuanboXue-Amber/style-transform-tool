@@ -1,4 +1,4 @@
-import { transformFile } from './core';
+import { transformFile, transformNamespacedFile } from './core';
 const path = require('path');
 
 describe('transformWithLinaria', () => {
@@ -131,6 +131,44 @@ describe('transformWithLinaria', () => {
             height: '4.6rem',
             justifyContent: 'center',
             width: '4.6rem'
+          }
+        }
+      });"
+    `);
+  });
+
+  it('should work with namespaced', () => {
+    const styleFilename = path.resolve(
+      '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-namespace-auth.ts'
+    );
+    expect(
+      transformNamespacedFile(
+        styleFilename,
+        'default',
+        'isLoginListSigninButton',
+        { isMinHeightBreakpointAtLeast568: true }
+      )
+    ).toMatchInlineSnapshot(`
+      "export const useStyles = makeStyles({
+        root: {
+          maxWidth: '20rem',
+          minWidth: '14rem',
+          width: '30vh'
+        }
+      });"
+    `);
+    expect(
+      transformNamespacedFile(
+        styleFilename,
+        'default',
+        'isAccountListUseAnotherAccountButton'
+      )
+    ).toMatchInlineSnapshot(`
+      "export const useStyles = makeStyles({
+        root: {
+          '& .ui-button__content': {
+            color: \`\${token.amberTemp}\`,
+            fontWeight: 'siteVariables_fontWeightRegular_400'
           }
         }
       });"

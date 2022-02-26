@@ -80,6 +80,7 @@ const questions = [
   },
 ];
 
+// TODO show a progress bar, cache theme
 (async () => {
   const response = await prompts(questions);
   const {
@@ -120,11 +121,4 @@ const questions = [
   }
 
   console.log(result);
-
-  // const { filename, theme, variables } = response;
-  // const variablesObject = {};
-  // variables.forEach((variable) => {
-  //   variablesObject[variable] = true;
-  // });
-  // console.log(transformFile(path.resolve(filename), variablesObject));
 })();

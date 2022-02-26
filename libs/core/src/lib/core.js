@@ -7,7 +7,11 @@ import {
   transformShorthandsHelper,
   transformShorthandsPlugin,
 } from '../babel-plugin';
-import { hasToken, processedLightTheme } from './replace-siteVariables';
+import {
+  hasToken,
+  processedLightTheme,
+  namespaceTokensLight,
+} from './siteVariables';
 
 const linariaOptions = {
   displayName: false,
@@ -128,10 +132,9 @@ export const transformNamespacedFile = (
   Object.keys(exports).forEach((slotName) => {
     const styleF = exports[slotName][variable];
     if (styleF && typeof styleF === 'function') {
-      const slotStyle = styleF({
-        // TODO colorschemes
-        variableProps,
-      });
+      namespaceTokensLight.variableProps = variableProps;
+      const slotStyle = styleF(namespaceTokensLight);
+      namespaceTokensLight.variableProps = undefined;
       if (Object.keys(slotStyle).length > 0) {
         computedStyles[slotName] = slotStyle;
       }
