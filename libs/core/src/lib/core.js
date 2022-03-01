@@ -9,7 +9,7 @@ import {
 } from '../babel-plugin';
 import {
   hasToken,
-  replaceTokens,
+  tokensV0toV9,
   getThemeWithStringTokens,
   getNamespaceTokens,
 } from './siteVariables';
@@ -45,7 +45,7 @@ const transformTokenPlugin = () => {
     visitor: {
       StringLiteral(path) {
         if (path.node.value && hasToken(path.node.value)) {
-          path.replaceWithSourceString(replaceTokens(path.node.value));
+          path.replaceWithSourceString(tokensV0toV9(path.node.value));
         }
       },
     },

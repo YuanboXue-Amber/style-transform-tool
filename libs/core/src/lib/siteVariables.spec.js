@@ -1,5 +1,5 @@
 import { themes } from './constants';
-import { getThemeWithStringTokens, replaceTokens } from './siteVariables';
+import { getThemeWithStringTokens, tokensV0toV9 } from './siteVariables';
 const mapping = require('../mapping.json');
 
 describe('siteVariables.spec', () => {
@@ -1548,15 +1548,15 @@ describe('siteVariables.spec', () => {
     `);
   });
 
-  it('replaceTokens', () => {
+  it('tokensV0toV9', () => {
     expect(mapping.default.foreground).toEqual('colorNeutralForeground1');
     expect(
-      replaceTokens(
+      tokensV0toV9(
         `1rem solid siteVariables_colorScheme_brand_foregroundDisabled1_#c7c7c7`
       )
     ).toMatchInlineSnapshot(`"\`1rem solid #c7c7c7\`"`);
     expect(
-      replaceTokens(
+      tokensV0toV9(
         `1rem solid siteVariables_colorScheme_default_background_#fff`
       )
     ).toMatchInlineSnapshot(`"\`1rem solid \${colorNeutralBackground1}\`"`);

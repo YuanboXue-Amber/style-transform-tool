@@ -73,7 +73,7 @@ export const getNamespaceTokens = (theme) => {
 export const hasToken = (str) => str.indexOf('siteVariables_colorScheme_') >= 0;
 
 // TODO! what about non-color token
-export const replaceTokens = (str) =>
+export const tokensV0toV9 = (str) =>
   `\`${str
     .split(' ')
     .map((word) => (hasToken(word) ? replaceOneToken(word) : word))
