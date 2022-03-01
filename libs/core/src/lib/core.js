@@ -1,4 +1,4 @@
-const fs = require('fs');
+import * as fs from 'fs';
 import shakerEvaluator from '@linaria/shaker';
 import { Module } from '@linaria/babel-preset';
 import * as Babel from '@babel/standalone';

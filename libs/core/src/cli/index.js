@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 import prompts from 'prompts';
 import { transformFile, transformNamespacedFile } from '../lib/core';
-import { themes } from '../lib/constants';
 import path from 'path';
 import * as JSON5 from 'json5'; // json5 can parse without quotes
-
-const isNamespaced = (filename) =>
-  filename.indexOf('-namespace-') > 0 ? true : false;
+import { isNamespaced } from '../lib/multi-themes';
 
 const questions = [
   {
@@ -72,14 +69,13 @@ const questions = [
   },
   {
     type: 'select',
-    name: 'theme',
-    message: 'What is the theme?',
-    initial: 0,
+    name: 'transformAllThemes',
+    message: 'Would you like to transform all themes or just the current file',
     choices: [
-      { title: 'light', value: themes.light },
-      { title: 'dark', value: themes.dark },
-      { title: 'high contrast', value: themes.contrast },
+      { title: 'All themes', value: false },
+      { title: 'Just this file', value: true },
     ],
+    initial: 0,
   },
 ];
 
@@ -94,7 +90,7 @@ const questions = [
     componentProps,
     namespacedVariable,
     namespacedVariableProps,
-    theme,
+    transformAllThemes,
   } = response;
   const styleFilename = path.resolve(filename.trim());
 
