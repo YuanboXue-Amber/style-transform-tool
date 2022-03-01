@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import prompts from 'prompts';
 import { transformFile, transformNamespacedFile } from '../lib/core';
+import { themes } from '../lib/constants';
 import path from 'path';
 import * as JSON5 from 'json5'; // json5 can parse without quotes
 
@@ -75,9 +76,9 @@ const questions = [
     message: 'What is the theme?',
     initial: 0,
     choices: [
-      { title: 'light', value: 'light' },
-      { title: 'dark', value: 'dark' },
-      { title: 'high contrast', value: 'contrast' },
+      { title: 'light', value: themes.light },
+      { title: 'dark', value: themes.dark },
+      { title: 'high contrast', value: themes.contrast },
     ],
   },
 ];
@@ -89,11 +90,11 @@ const questions = [
   const {
     filename,
     exportName,
-    theme,
     variables,
     componentProps,
     namespacedVariable,
     namespacedVariableProps,
+    theme,
   } = response;
   const styleFilename = path.resolve(filename.trim());
 
@@ -104,23 +105,23 @@ const questions = [
     variables.forEach((variable) => {
       variablesObject[variable] = true;
     });
-    result = transformFile(
+    result = transformFile({
+      theme,
       styleFilename,
       exportName,
       variablesObject,
-      componentProps ? JSON5.parse(componentProps) : {}
-    );
+      componentProps: componentProps ? JSON5.parse(componentProps) : {},
+    });
   } else {
-    const resolvedNamespacedVariableProps = namespacedVariableProps
-      ? JSON5.parse(namespacedVariableProps)
-      : {};
-
-    result = transformNamespacedFile(
+    result = transformNamespacedFile({
+      theme,
       styleFilename,
       exportName,
-      namespacedVariable,
-      resolvedNamespacedVariableProps
-    );
+      variable: namespacedVariable,
+      variableProps: namespacedVariableProps
+        ? JSON5.parse(namespacedVariableProps)
+        : {},
+    });
   }
 
   console.log(result);

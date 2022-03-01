@@ -7,9 +7,13 @@ describe('transformWithLinaria', () => {
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Slider/slider-styles.ts'
     );
     expect(
-      transformFile(styleFilename, 'sliderStyles', {
-        isCallingVolumeSliderDisabled: true,
-        isCallingPreJoinV2ComputerAudioVolumeSlider: true,
+      transformFile({
+        styleFilename,
+        exportName: 'sliderStyles',
+        variables: {
+          isCallingVolumeSliderDisabled: true,
+          isCallingPreJoinV2ComputerAudioVolumeSlider: true,
+        },
       })
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
@@ -35,9 +39,13 @@ describe('transformWithLinaria', () => {
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-styles.ts'
     );
     expect(
-      transformFile(styleFilename, 'buttonStyles', {
-        isChatRosterActionButton: true,
-        chatRosterTriggerText: true,
+      transformFile({
+        styleFilename,
+        exportName: 'buttonStyles',
+        variables: {
+          isChatRosterActionButton: true,
+          chatRosterTriggerText: true,
+        },
       })
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
@@ -103,15 +111,14 @@ describe('transformWithLinaria', () => {
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-styles.ts'
     );
     expect(
-      transformFile(
+      transformFile({
         styleFilename,
-        'buttonStyles',
-        {
+        exportName: 'buttonStyles',
+        variables: {
           isDockedUbarCustomActionButton: true,
         },
-
-        { disabled: true }
-      )
+        componentProps: { disabled: true },
+      })
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
         root: {
@@ -142,12 +149,12 @@ describe('transformWithLinaria', () => {
       '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Button/button-namespace-auth.ts'
     );
     expect(
-      transformNamespacedFile(
+      transformNamespacedFile({
         styleFilename,
-        'default',
-        'isLoginListSigninButton',
-        { isMinHeightBreakpointAtLeast568: true }
-      )
+        exportName: 'default',
+        variable: 'isLoginListSigninButton',
+        variableProps: { isMinHeightBreakpointAtLeast568: true },
+      })
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
         root: {
@@ -158,11 +165,11 @@ describe('transformWithLinaria', () => {
       });"
     `);
     expect(
-      transformNamespacedFile(
+      transformNamespacedFile({
         styleFilename,
-        'default',
-        'isAccountListUseAnotherAccountButton'
-      )
+        exportName: 'default',
+        variable: 'isAccountListUseAnotherAccountButton',
+      })
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
         root: {

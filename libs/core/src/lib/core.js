@@ -10,8 +10,8 @@ import {
 import {
   hasToken,
   replaceTokens,
-  processedLightTheme,
-  namespaceTokensLight,
+  getThemeWithStringTokens,
+  getNamespaceTokens,
 } from './siteVariables';
 
 const linariaOptions = {
@@ -84,16 +84,16 @@ const composeCodeFromMultiSlotStyles = (computedStyles) => {
   return result;
 };
 
-export const transformFile = (
+export const transformFile = ({
+  theme,
   styleFilename,
   exportName,
   variables,
-  componentProps
-) => {
+  componentProps,
+}) => {
   const exports = getExport(styleFilename, exportName);
 
-  // TODO!: get theme from TMP, or at least all siteVariables
-  const processedTheme = processedLightTheme; // TODO!: other theme
+  const processedTheme = getThemeWithStringTokens(theme);
 
   let computedStyles = {};
   Object.keys(exports).forEach((slotName) => {
@@ -115,21 +115,23 @@ export const transformFile = (
   );
 };
 
-export const transformNamespacedFile = (
+export const transformNamespacedFile = ({
+  theme,
   styleFilename,
   exportName,
   variable,
-  variableProps
-) => {
+  variableProps,
+}) => {
   const exports = getExport(styleFilename, exportName);
+
+  const namespacedTokens = getNamespaceTokens(theme);
 
   let computedStyles = {};
   Object.keys(exports).forEach((slotName) => {
     const styleF = exports[slotName][variable];
     if (styleF && typeof styleF === 'function') {
-      namespaceTokensLight.variableProps = variableProps;
-      const slotStyle = styleF(namespaceTokensLight);
-      namespaceTokensLight.variableProps = undefined;
+      namespacedTokens.variableProps = variableProps;
+      const slotStyle = styleF(namespacedTokens);
       if (Object.keys(slotStyle).length > 0) {
         computedStyles[slotName] = slotStyle;
       }

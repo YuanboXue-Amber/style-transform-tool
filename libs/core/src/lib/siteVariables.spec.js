@@ -1,9 +1,11 @@
-import { processedLightTheme, replaceTokens } from './siteVariables';
+import { themes } from './constants';
+import { getThemeWithStringTokens, replaceTokens } from './siteVariables';
 const mapping = require('../mapping.json');
 
 describe('siteVariables.spec', () => {
-  it('processedLightTheme', () => {
-    expect(processedLightTheme.siteVariables).toMatchInlineSnapshot(`
+  it('getThemeWithStringTokens', () => {
+    expect(getThemeWithStringTokens(themes.light).siteVariables)
+      .toMatchInlineSnapshot(`
       Object {
         "__esModule": "siteVariables___esModule_true",
         "bodyBackground": "siteVariables_bodyBackground_#fff",
