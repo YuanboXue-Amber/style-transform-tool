@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import * as prompts from 'prompts';
-import { transformFile, transformNamespacedFile } from '../lib/core';
 import * as path from 'path';
 import * as JSON5 from 'json5'; // json5 can parse without quotes
 import { isNamespaced } from '../lib/multi-themes';
+import { main } from '../lib/core';
 
 const questions = [
   {
@@ -46,7 +46,7 @@ const questions = [
   {
     type: (_prev, value) => (isNamespaced(value.filename) ? 'text' : null),
     name: 'namespacedVariableProps',
-    message: 'What is the namespacedVariableProps, if any?',
+    message: 'What is the namespaced variableProps, if any?',
     initial: '',
   },
   {
@@ -72,8 +72,8 @@ const questions = [
     name: 'isTransformAllThemes',
     message: 'Would you like to transform all themes or just the current file',
     choices: [
-      { title: 'All themes', value: false },
-      { title: 'Just this file', value: true },
+      { title: 'All themes', value: true },
+      { title: 'Just this file', value: false },
     ],
     initial: 0,
   },
@@ -82,6 +82,9 @@ const questions = [
 // TODO remove n* console log on 'You are running Fela in production mode'
 // TODO show a progress bar, cache theme
 (async () => {
+  console.log(
+    '⚠️ The tool transforms v2 theme only. Double check colors if your experience is NOT multi-window or react-web-client.'
+  );
   const response = await prompts(questions);
   const {
     filename,
@@ -94,29 +97,32 @@ const questions = [
   } = response;
   const styleFilename = path.resolve(filename.trim());
 
-  let result;
+  const isNamespacedFile = isNamespaced(filename);
 
-  if (!isNamespaced(filename)) {
-    const variablesObject = {};
+  let variablesObject;
+
+  if (!isNamespacedFile) {
     variables.forEach((variable) => {
+      variablesObject = variablesObject ?? {};
       variablesObject[variable] = true;
     });
-    result = transformFile({
-      styleFilename,
-      exportName,
-      variables: variablesObject,
-      componentProps: componentProps ? JSON5.parse(componentProps) : {},
-    });
-  } else {
-    result = transformNamespacedFile({
-      styleFilename,
-      exportName,
-      variable: namespacedVariable,
-      variableProps: namespacedVariableProps
-        ? JSON5.parse(namespacedVariableProps)
-        : {},
-    });
   }
+
+  const result = main({
+    inputFilename: styleFilename,
+    exportName,
+    isTransformAllThemes,
+  })({
+    isNamespaced: isNamespacedFile,
+    // namespaced
+    variable: namespacedVariable,
+    variableProps: namespacedVariableProps
+      ? JSON5.parse(namespacedVariableProps)
+      : {},
+    // non-namespaced
+    variables: variablesObject,
+    componentProps,
+  });
 
   console.log(result);
 })();

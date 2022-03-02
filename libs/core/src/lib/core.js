@@ -180,7 +180,7 @@ const computeCurrentTheme =
   }) => {
     // guess current theme
     const themeName = getCurrentTMPtheme(inputFilename);
-    if (!tmpThemes[themeName]) {
+    if (tmpThemes[themeName] === undefined) {
       throw new Error(`Detect the current theme is ${themeName}, which is not a valid TMP theme.
   The value must be one of: teams, teams-tfl, teams-v2, teams-dark, teams-dark-tfl, teams-dark-v2, teams-hight-contrast`);
     }

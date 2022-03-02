@@ -7,6 +7,7 @@ import {
   teamsDarkTheme as fluentTeamsDarkTheme,
   teamsHighContrastTheme as fluentTeamsHighContrastTheme,
 } from '@fluentui/react-northstar';
+import * as _ from 'lodash';
 import { tmpThemes } from './constants';
 
 const linariaOptions = {
@@ -57,24 +58,18 @@ export const getTMPsiteVariables = ({ gitRoot, themeName }) => {
     case tmpThemes[themeName] === tmpThemes['teams']:
     case tmpThemes[themeName] === tmpThemes['teams-v2']:
     case tmpThemes[themeName] === tmpThemes['teams-tfl']:
-      return {
-        ...fluentTeamsTheme.siteVariables,
-        ...tmpSiteVariables,
-      };
+      return _.merge(fluentTeamsTheme.siteVariables, tmpSiteVariables);
 
     case tmpThemes[themeName] === tmpThemes['teams-dark']:
     case tmpThemes[themeName] === tmpThemes['teams-dark-v2']:
     case tmpThemes[themeName] === tmpThemes['teams-dark-tfl']:
-      return {
-        ...fluentTeamsDarkTheme.siteVariables,
-        ...tmpSiteVariables,
-      };
+      return _.merge(fluentTeamsDarkTheme.siteVariables, tmpSiteVariables);
 
     case tmpThemes[themeName] === tmpThemes['teams-high-contrast']:
-      return {
-        ...fluentTeamsHighContrastTheme.siteVariables,
-        ...tmpSiteVariables,
-      };
+      return _.merge(
+        fluentTeamsHighContrastTheme.siteVariables,
+        tmpSiteVariables
+      );
 
     default:
       throw new Error(`Cannot find siteVariables for theme ${themeName}`);
