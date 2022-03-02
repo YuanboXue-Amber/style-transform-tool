@@ -1554,11 +1554,23 @@ describe('transform', () => {
       tokensV0toV9(
         `1rem solid siteVariables_colorScheme_brand_foregroundDisabled1_#c7c7c7`
       )
-    ).toMatchInlineSnapshot(`"\`1rem solid #c7c7c7\`"`);
+    ).toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [
+          " FIXME: ⚠️ No v9 matching found for token colorScheme.brand.foregroundDisabled1, using its value \`#c7c7c7\` as placeholder",
+        ],
+        "value": "\`1rem solid #c7c7c7\`",
+      }
+    `);
     expect(
       tokensV0toV9(
         `1rem solid siteVariables_colorScheme_default_background_#fff`
       )
-    ).toMatchInlineSnapshot(`"\`1rem solid \${colorNeutralBackground1}\`"`);
+    ).toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [],
+        "value": "\`1rem solid \${colorNeutralBackground1}\`",
+      }
+    `);
   });
 });

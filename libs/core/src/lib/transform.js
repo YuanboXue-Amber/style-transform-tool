@@ -10,7 +10,17 @@ const transformTokenPlugin = () => {
     visitor: {
       StringLiteral(path) {
         if (path.node.value && hasToken(path.node.value)) {
-          path.replaceWithSourceString(tokensV0toV9(path.node.value));
+          const replacementResult = tokensV0toV9(path.node.value);
+          path.replaceWithSourceString(replacementResult.value);
+
+          if (replacementResult.comments.length) {
+            // found token without matching in v9, add comments for them
+            path.parentPath.addComment(
+              'leading',
+              replacementResult.comments,
+              true
+            );
+          }
         }
       },
     },

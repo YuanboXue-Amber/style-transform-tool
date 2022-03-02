@@ -1,4 +1,3 @@
-import template from '@babel/template';
 import { supportedShorthandsKeys, allShorthandsKeys } from './shorthands';
 import { SHORTHANDS_KEYWORD_FOR_EASY_REPLACE } from './helper';
 
@@ -48,13 +47,10 @@ export const transformShorthandsPlugin = ({ types: t }) => {
                 ) {
                   key.replaceWithSourceString(`${key.toString()}Color`);
                 } else {
-                  key.replaceWith(
-                    template.expression.ast(
-                      `// FIXME: ❌ unsupported css property, please manually expand shorthand\n${key.toString()}`,
-                      {
-                        preserveComments: true,
-                      }
-                    )
+                  key.addComment(
+                    'leading',
+                    ` FIXME: ❌ unsupported css property, please manually expand shorthand`,
+                    true
                   );
                 }
               }

@@ -37,12 +37,33 @@ export const makeNamespaceParms = (theme) => ({
 
 export const hasToken = (str) => str.indexOf('siteVariables_') >= 0;
 
-// TODO! what about non-color token
-export const tokensV0toV9 = (str) =>
-  `\`${str
+export const tokensV0toV9 = (str) => {
+  const noReplacement = [];
+  const replacementValue = `\`${str
     .split(' ')
-    .map((word) => (hasToken(word) ? replaceOneToken(word) : word))
+    .map((word) => {
+      if (!hasToken(word)) {
+        return word;
+      }
+      const matchResult = replaceOneToken(word);
+      if (!matchResult.hasMatch) {
+        const tokenName = word.split('_');
+        tokenName.pop();
+        tokenName.shift();
+        noReplacement.push(
+          ` FIXME: ⚠️ No v9 matching found for token ${tokenName.join(
+            '.'
+          )}, using its value \`${matchResult.replacement}\` as placeholder`
+        );
+      }
+      return matchResult.replacement;
+    })
     .join(' ')}\``;
+  return {
+    value: replacementValue,
+    comments: noReplacement,
+  };
+};
 
 const replaceOneToken = (token) => {
   if (token.indexOf('siteVariables_colorScheme') >= 0) {
@@ -59,10 +80,16 @@ const replaceOneToken = (token) => {
     if (scheme && color) {
       const v9Token = mapping?.[scheme]?.[color];
       if (v9Token) {
-        return `$\{${v9Token}}`;
+        return {
+          replacement: `$\{${v9Token}}`,
+          hasMatch: true,
+        };
       }
     }
   }
   // token is not color token, use its value
-  return token.split('_').pop();
+  return {
+    replacement: token.split('_').pop(),
+    hasMatch: false,
+  };
 };
