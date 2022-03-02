@@ -1,4 +1,4 @@
-import mapping from '@fluentui-style-transform/core/src/mapping';
+import mapping from '@fluentui-style-transform/tokenMapping';
 import {
   teamsLightTheme,
   teamsDarkTheme,

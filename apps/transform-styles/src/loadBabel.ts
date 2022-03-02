@@ -9,7 +9,7 @@ import type {
 import {
   transformShorthandsHelper,
   transformShorthandsPlugin,
-} from '@fluentui-style-transform/core/src/babel-plugin';
+} from '@fluentui-style-transform/babel-transform-shorthands';
 
 export const plugins: any = {};
 

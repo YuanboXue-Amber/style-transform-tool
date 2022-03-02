@@ -1,18 +1,9 @@
 import * as fs from 'fs';
 import shakerEvaluator from '@linaria/shaker';
 import { Module } from '@linaria/babel-preset';
-import * as Babel from '@babel/standalone';
 import * as JSON5 from 'json5'; // json5 does not add quotes
-import {
-  transformShorthandsHelper,
-  transformShorthandsPlugin,
-} from '../babel-plugin';
-import {
-  hasToken,
-  tokensV0toV9,
-  getThemeWithStringTokens,
-  getNamespaceTokens,
-} from './siteVariables';
+import { transform } from './transform';
+import { getThemeWithStringTokens, getNamespaceTokens } from './siteVariables';
 
 const linariaOptions = {
   displayName: false,
@@ -38,33 +29,7 @@ const getExport = (styleFilename, exportName) => {
   return mod.exports[exportName];
 };
 
-// style -----------
-
-const transformTokenPlugin = () => {
-  return {
-    visitor: {
-      StringLiteral(path) {
-        if (path.node.value && hasToken(path.node.value)) {
-          path.replaceWithSourceString(tokensV0toV9(path.node.value));
-        }
-      },
-    },
-  };
-};
-
-const transformTokenShorthands = (sourceCode) => {
-  const babelFileResult = Babel.transform(sourceCode, {
-    babelrc: false,
-    configFile: false,
-    plugins: [[transformTokenPlugin], [transformShorthandsPlugin]],
-  });
-
-  if (babelFileResult === null) {
-    throw new Error(`Failed to transform due to unknown Babel error...`);
-  }
-
-  return transformShorthandsHelper(babelFileResult.code);
-};
+// style start -----------
 
 const composeCodeFromMultiSlotStyles = (computedStyles) => {
   let addSlotComments = Object.keys(computedStyles).length > 1;
@@ -83,6 +48,12 @@ const composeCodeFromMultiSlotStyles = (computedStyles) => {
   result += ` } })`;
   return result;
 };
+
+// style end -----------
+// multi theme -----------
+
+// -----------
+// API -----------
 
 export const transformFile = ({
   theme,
@@ -110,9 +81,7 @@ export const transformFile = ({
     }
   });
 
-  return transformTokenShorthands(
-    composeCodeFromMultiSlotStyles(computedStyles)
-  );
+  return transform(composeCodeFromMultiSlotStyles(computedStyles));
 };
 
 export const transformNamespacedFile = ({
@@ -138,26 +107,5 @@ export const transformNamespacedFile = ({
     }
   });
 
-  return transformTokenShorthands(
-    composeCodeFromMultiSlotStyles(computedStyles)
-  );
+  return transform(composeCodeFromMultiSlotStyles(computedStyles));
 };
-
-// const styleFilename =
-//   '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Slider/slider-styles.ts';
-
-// console.log(
-//   transformFile(styleFilename, 'sliderStyles', {
-//     isCallingVolumeSliderDisabled: true,
-//     isCallingPreJoinV2ComputerAudioVolumeSlider: true,
-//   })
-// );
-
-// const styleFilename =
-//   '/Users/yuanboxue/dev/TMP/t2/teams-modular-packages/packages/components/components-teams-stardust-ui/src/themes/teams/components/Card/card-namespace-edu.ts';
-
-// console.log(
-//   transformFile(styleFilename, 'default', {
-//     gridViewTeamCard: true,
-//   })
-// );
