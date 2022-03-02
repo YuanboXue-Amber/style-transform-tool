@@ -27,7 +27,7 @@ describe('transformWithLinaria', () => {
               width: '100%'
             }
           },
-          // ❌ unsupported css property, please manually expand shorthand
+          // FIXME: ❌ unsupported css property, please manually expand shorthand
           flex: 1,
           '& .ui-slider__rail': {
             backgroundColor: \`\${colorNeutralForegroundDisabled}\`,
@@ -62,15 +62,15 @@ describe('transformWithLinaria', () => {
             backgroundColor: \`\${colorNeutralBackground1Hover}\`,
             ...shorthands.borderWidth(\\".1rem\\"),
             ...shorthands.borderColor(\\"transparent\\"),
-            // ❌ unsupported css property, please manually expand shorthand
+            // FIXME: ❌ unsupported css property, please manually expand shorthand
             textDecoration: 'none'
           },
           ':active': {
-            // ❌ unsupported css property, please manually expand shorthand
+            // FIXME: ❌ unsupported css property, please manually expand shorthand
             transition: 'none',
             ...shorthands.borderWidth(\\".1rem\\"),
             ...shorthands.borderColor(\\"transparent\\"),
-            // ❌ unsupported css property, please manually expand shorthand
+            // FIXME: ❌ unsupported css property, please manually expand shorthand
             animation: 'none'
           },
           paddingLeft: '.3rem',
@@ -100,7 +100,9 @@ describe('transformWithLinaria', () => {
           },
           marginBottom: '.6rem',
           ...shorthands.border(\\"none\\"),
+          // FIXME: ⚠️ No v9 matching found for token fontSizes.small, using its value \`0.75rem\` as placeholder
           fontSize: \`0.75rem\`,
+          // FIXME: ⚠️ No v9 matching found for token fontWeightBold, using its value \`700\` as placeholder
           fontWeight: \`700\`,
           height: '2.8rem',
           minWidth: '2.8rem',
@@ -109,6 +111,7 @@ describe('transformWithLinaria', () => {
         },
         rootContrast: {
           ':active:hover': {
+            // FIXME: ⚠️ No v9 matching found for token colorScheme.brand.foregroundHover, using its value \`#000\` as placeholder
             color: \`#000\`
           }
         },
@@ -149,7 +152,8 @@ describe('transformWithLinaria', () => {
             color: \`\${colorNeutralBackgroundDisabled}\`
           },
           ':active': {
-            color: \`#3d3e78\`
+            // FIXME: ⚠️ No v9 matching found for token colorScheme.brand.foregroundPressed, using its value \`#444791\` as placeholder
+            color: \`#444791\`
           },
           '& .ui-icon': {
             alignItems: 'center',
@@ -161,6 +165,7 @@ describe('transformWithLinaria', () => {
         },
         rootContrast: {
           ':active:hover': {
+            // FIXME: ⚠️ No v9 matching found for token colorScheme.brand.foregroundHover, using its value \`#000\` as placeholder
             color: \`#000\`
           }
         }
@@ -205,7 +210,9 @@ describe('transformWithLinaria', () => {
       "export const useStyles = makeStyles({
         root: {
           '& .ui-button__content': {
+            // FIXME: ⚠️ No v9 matching found for token colorScheme.brand.foreground, using its value \`#5b5fc7\` as placeholder
             color: \`#5b5fc7\`,
+            // FIXME: ⚠️ No v9 matching found for token fontWeightRegular, using its value \`400\` as placeholder
             fontWeight: \`400\`
           }
         }
