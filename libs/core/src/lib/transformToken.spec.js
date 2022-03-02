@@ -1,10 +1,10 @@
-import { themes } from './constants';
-import { getThemeWithStringTokens, tokensV0toV9 } from './siteVariables';
+import { replaceSiteVariblesToString, tokensV0toV9 } from './transformToken';
 import * as mapping from '../mapping.json';
+import { teamsV2Theme } from '@fluentui/react-northstar';
 
-describe('siteVariables.spec', () => {
+describe('transform', () => {
   it('getThemeWithStringTokens', () => {
-    expect(getThemeWithStringTokens(themes.light).siteVariables)
+    expect(replaceSiteVariblesToString(teamsV2Theme).siteVariables)
       .toMatchInlineSnapshot(`
       Object {
         "__esModule": "siteVariables___esModule_true",

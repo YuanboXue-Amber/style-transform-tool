@@ -69,7 +69,7 @@ const questions = [
   },
   {
     type: 'select',
-    name: 'transformAllThemes',
+    name: 'isTransformAllThemes',
     message: 'Would you like to transform all themes or just the current file',
     choices: [
       { title: 'All themes', value: false },
@@ -90,7 +90,7 @@ const questions = [
     componentProps,
     namespacedVariable,
     namespacedVariableProps,
-    transformAllThemes,
+    isTransformAllThemes,
   } = response;
   const styleFilename = path.resolve(filename.trim());
 

@@ -1,5 +1,5 @@
 import * as Babel from '@babel/standalone';
-import { hasToken, tokensV0toV9 } from './siteVariables';
+import { hasToken, tokensV0toV9 } from './transformToken';
 import {
   transformShorthandsHelper,
   transformShorthandsPlugin,
