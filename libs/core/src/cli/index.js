@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import prompts from 'prompts';
+import * as prompts from 'prompts';
 import { transformFile, transformNamespacedFile } from '../lib/core';
-import path from 'path';
+import * as path from 'path';
 import * as JSON5 from 'json5'; // json5 can parse without quotes
 import { isNamespaced } from '../lib/multi-themes';
 
@@ -102,15 +102,13 @@ const questions = [
       variablesObject[variable] = true;
     });
     result = transformFile({
-      theme,
       styleFilename,
       exportName,
-      variablesObject,
+      variables: variablesObject,
       componentProps: componentProps ? JSON5.parse(componentProps) : {},
     });
   } else {
     result = transformNamespacedFile({
-      theme,
       styleFilename,
       exportName,
       variable: namespacedVariable,

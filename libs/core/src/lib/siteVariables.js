@@ -5,7 +5,7 @@ import {
   teamsHighContrastTheme,
 } from '@fluentui/react-northstar';
 import { themes } from './constants';
-const mapping = require('../mapping.json');
+import * as mapping from '../mapping.json';
 
 // recursively iterate thru an object, replace the value into key_value string
 const valueToString = (object, result, prefix = '') => {

@@ -1,6 +1,6 @@
 import { themes } from './constants';
 import { getThemeWithStringTokens, tokensV0toV9 } from './siteVariables';
-const mapping = require('../mapping.json');
+import * as mapping from '../mapping.json';
 
 describe('siteVariables.spec', () => {
   it('getThemeWithStringTokens', () => {
