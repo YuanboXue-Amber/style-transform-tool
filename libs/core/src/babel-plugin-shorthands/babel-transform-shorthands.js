@@ -50,7 +50,7 @@ export const transformShorthandsPlugin = ({ types: t }) => {
                 } else {
                   key.replaceWith(
                     template.expression.ast(
-                      `// ❌ unsupported css property, please manually expand shorthand\n${key.toString()}`,
+                      `// FIXME: ❌ unsupported css property, please manually expand shorthand\n${key.toString()}`,
                       {
                         preserveComments: true,
                       }

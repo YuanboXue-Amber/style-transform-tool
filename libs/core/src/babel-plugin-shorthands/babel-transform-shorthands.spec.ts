@@ -22,7 +22,7 @@ export const useStyles = makeStyles({
     ).toMatchInlineSnapshot(`
 "export const useStyles = makeStyles({
   root: {
-    // ❌ unsupported css property, please manually expand shorthand
+    // FIXME: ❌ unsupported css property, please manually expand shorthand
     flex: 1,
     SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.padding(\\"5px\\"),
     backgroundColor: tokens.colorNeutralForeground1
