@@ -7,7 +7,7 @@
       "executor": "@nrwl/node:package",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "libs/core/dist",
+        "outputPath": "dist/libs/v9helper",
         "tsConfig": "libs/core/tsconfig.lib.json",
         "packageJson": "libs/core/package.json",
         "main": "libs/core/src/index.js",
@@ -23,7 +23,7 @@
         }
       ],
       "options": {
-        "commands": [{ "command": "chmod -R 755 libs/core/dist" }]
+        "commands": [{ "command": "chmod -R 755 dist/libs/v9helper" }]
       }
     },
     "lint": {

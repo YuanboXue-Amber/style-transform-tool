@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fluentui-style-transform/core": ["libs/core/src/index.js"],
       "@fluentui-style-transform/babel-transform-shorthands": [
         "libs/core/src/babel-plugin-shorthands/index.js"
       ],
+      "v9helper": ["libs/core/src/index.js"],
       "@fluentui-style-transform/tokenMapping": ["libs/core/src/mapping.json"]
     }
   },

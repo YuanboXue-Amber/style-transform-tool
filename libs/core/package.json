@@ -1,8 +1,8 @@
 {
-  "name": "@fluentui-style-transform/core",
+  "name": "v9helper",
   "version": "0.0.1",
   "main": "src/index.js",
   "bin": {
-    "v9helper": "./dist/src/cli/index.js"
+    "v9helper": "src/cli/index.js"
   }
 }
