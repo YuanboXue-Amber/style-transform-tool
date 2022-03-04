@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.17.5",
+    "@babel/preset-typescript": "^7.16.7",
     "@babel/standalone": "^7.17.6",
     "@babel/template": "^7.16.7",
     "@babel/types": "^7.17.0",
