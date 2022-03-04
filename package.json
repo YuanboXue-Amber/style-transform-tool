@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "install:cli": "nx build:cli core && cd dist/libs/v9helper && npm install -g ."
+    "install:cli": "nx build:cli core && cd dist/libs/v9helper && npm install -g .",
+    "publish:cli": "nx build:cli core && npm publish dist/libs/v9helper --tag testing-new-feature"
   },
   "private": true,
   "dependencies": {
