@@ -14,6 +14,7 @@ import {
   replaceSiteVariblesToString,
   makeNamespaceParms,
 } from './transformToken';
+import * as babelTSpresets from '@babel/preset-typescript';
 
 // linaria get styles start ---------
 const linariaOptions = {
@@ -29,7 +30,7 @@ const linariaOptions = {
   babelOptions: {
     configFile: false,
     babelrc: false,
-    presets: ['@babel/typescript'],
+    presets: [babelTSpresets],
   },
 };
 

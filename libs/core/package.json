@@ -1,6 +1,6 @@
 {
   "name": "v9helper",
-  "version": "0.0.1-20220304",
+  "version": "0.0.1-20220304.1",
   "main": "src/index.js",
   "bin": {
     "v9helper": "src/cli/index.js"

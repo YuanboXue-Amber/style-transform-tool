@@ -9,6 +9,7 @@ import {
 } from '@fluentui/react-northstar';
 import * as _ from 'lodash';
 import { tmpThemes } from './constants';
+import * as babelTSpresets from '@babel/preset-typescript';
 
 const linariaOptions = {
   displayName: false,
@@ -23,7 +24,7 @@ const linariaOptions = {
   babelOptions: {
     configFile: false,
     babelrc: false,
-    presets: ['@babel/typescript'],
+    presets: [babelTSpresets],
   },
 };
 
