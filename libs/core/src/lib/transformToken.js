@@ -81,7 +81,7 @@ const replaceOneToken = (token) => {
       const v9Token = mapping?.[scheme]?.[color];
       if (v9Token) {
         return {
-          replacement: `$\{${v9Token}}`,
+          replacement: `$\{tokens.${v9Token}}`,
           hasMatch: true,
         };
       }
