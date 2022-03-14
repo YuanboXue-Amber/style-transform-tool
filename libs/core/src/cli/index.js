@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+process.env.NODE_ENV = process.env.NODE_ENV ?? 'production';
 import * as prompts from 'prompts';
 import * as path from 'path';
 import * as JSON5 from 'json5'; // json5 can parse without quotes
