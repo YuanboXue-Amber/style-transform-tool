@@ -79,13 +79,16 @@ const questions = [
   },
 ];
 
-// TODO remove n* console log on 'You are running Fela in production mode'
 // TODO show a progress bar, cache theme
 (async () => {
   console.log(
     '⚠️ The tool transforms v2 theme only. Double check colors if your experience is NOT multi-window or react-web-client.'
   );
   const response = await prompts(questions);
+  if (!validate(response)) {
+    return;
+  }
+
   const {
     filename,
     exportName,
@@ -95,6 +98,7 @@ const questions = [
     namespacedVariableProps,
     isTransformAllThemes,
   } = response;
+
   const styleFilename = path.resolve(filename.trim());
 
   const isNamespacedFile = isNamespaced(filename);
@@ -126,3 +130,19 @@ const questions = [
 
   console.log(result);
 })();
+
+const validate = ({ filename, variables, namespacedVariable }) => {
+  if (!filename) {
+    return false;
+  }
+
+  if (isNamespaced(filename)) {
+    if (!variables) {
+      return false;
+    }
+  } else if (!namespacedVariable) {
+    return false;
+  }
+
+  return true;
+};
