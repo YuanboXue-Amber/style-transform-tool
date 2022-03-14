@@ -54,6 +54,43 @@
     "backgroundDisabled": "colorNeutralBackgroundDisabled",
     "backgroundDisabled1": "colorNeutralBackgroundDisabled",
     "backgroundDisabled2": "colorNeutralBackgroundDisabled",
-    "backgroundDisabled3": "colorNeutralBackgroundDisabled"
+    "backgroundDisabled3": "colorNeutralBackgroundDisabled",
+
+    "border": "colorNeutralStroke1",
+    "border1": "colorNeutralStroke3",
+    "border2": "colorNeutralStroke2",
+    "border3": "colorNeutralStroke3",
+
+    "borderHover": "colorNeutralStroke1Hover",
+    "borderPressed": "colorNeutralStroke1Pressed",
+    "borderActive": "colorNeutralStroke1Selected",
+    "borderActive1": "colorNeutralStroke1Selected",
+    "borderActive2": "colorNeutralStroke1Selected",
+    "borderActive3": "colorNeutralStroke1Selected",
+
+    "borderTransparent": "colorTransparentStroke",
+    "borderTransparentActive": "colorTransparentStrokeInteractive",
+
+    "borderDisabled": "colorNeutralStrokeDisabled",
+    "borderFocus": "colorStrokeFocus2",
+    "borderFocusWithin": "colorStrokeFocus1"
+  },
+  "brand": {
+    "foreground": "colorBrandForeground1",
+    "foreground1": "colorBrandForegroundLink",
+    "foreground2": "colorBrandForegroundLink",
+    "foreground4": "colorNeutralForegroundOnBrand",
+
+    "foregroundHover": "colorNeutralForeground2BrandHover",
+    "foregroundHover1": "colorNeutralForegroundInvertedHover",
+    "foregroundActive": "colorCompoundBrandForeground1",
+    "foregroundPressed1": "colorNeutralForegroundInvertedHover",
+
+    "background": "colorBrandBackground",
+    "backgroundHover": "colorBrandBackgroundHover",
+
+    "border": "colorNeutralStroke2",
+    "borderActive": "colorNeutralStroke1Selected",
+    "borderFocusWithin": "colorStrokeFocus1"
   }
 }
