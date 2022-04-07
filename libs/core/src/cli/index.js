@@ -138,13 +138,14 @@ const questions = [
   })({
     isNamespaced: isNamespacedFile,
     // namespaced
-    variable: namespacedVariable,
     variableProps: namespacedVariableProps
       ? JSON5.parse(namespacedVariableProps)
       : {},
     // non-namespaced
-    variables: variablesObject,
-    componentProps,
+    variables: isNamespacedFile
+      ? { [namespacedVariable]: true }
+      : variablesObject,
+    componentProps: componentProps ? JSON5.parse(componentProps) : undefined,
   });
 
   // const endT = process.hrtime(startT);
