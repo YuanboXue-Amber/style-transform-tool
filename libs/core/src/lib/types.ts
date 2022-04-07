@@ -32,6 +32,7 @@ export type Main = ({
   inputFilename,
   exportName,
   isTransformAllThemes,
+  preparedSiteVariables,
 }: {
   /**
    * path to styles file
@@ -48,6 +49,12 @@ export type Main = ({
    * Otherwise styles will only be computed from the current specified `inputFilename` file
    */
   isTransformAllThemes: boolean;
+
+  /**
+   * Computing styles requires siteVariables from theme.
+   * When programatically computing styles repeatly, pass in prepare siteVariables to prevent recomputing it
+   */
+  preparedSiteVariables?: PreparedSiteVariables;
 }) => ComputeStyles;
 
 export type ComputeStylesFromFile = ({
@@ -55,9 +62,10 @@ export type ComputeStylesFromFile = ({
   inputFilename,
   exportName,
 }: {
-  gitRoot: string;
   inputFilename: string;
   exportName: string;
+  gitRoot: string;
+  preparedSiteVariables?: PreparedSiteVariables;
 }) => (inputs: UserInputs) => Record<string, any>;
 
 export type ThemeName =
@@ -69,14 +77,17 @@ export type ThemeName =
   | 'teams-dark-tfl'
   | 'teams-high-contrast';
 
+export type PreparedSiteVariables = Partial<Record<ThemeName, any>>;
 export type ComputeOneTheme = ({
+  preparedSiteVariables,
   gitRoot,
   themeName,
   currentThemeStylesFile,
   exportName,
 }: {
-  gitRoot: string;
   themeName: ThemeName;
   currentThemeStylesFile: string;
   exportName: string;
+  preparedSiteVariables?: PreparedSiteVariables;
+  gitRoot?: string;
 }) => (inputs: UserInputs) => (result: Record<string, any>) => void;

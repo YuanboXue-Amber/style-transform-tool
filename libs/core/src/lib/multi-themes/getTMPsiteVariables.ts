@@ -10,6 +10,7 @@ import {
 import * as _ from 'lodash';
 import { tmpThemes } from './constants';
 import * as babelTSpresets from '@babel/preset-typescript';
+import { ThemeName } from '../types';
 
 const linariaOptions = {
   displayName: false,
@@ -28,7 +29,16 @@ const linariaOptions = {
   },
 };
 
-export const getTMPsiteVariables = ({ gitRoot, themeName }) => {
+/**
+ * @returns siteVariables in specified TMP theme
+ */
+export const getTMPsiteVariables = ({
+  gitRoot,
+  themeName,
+}: {
+  gitRoot: string;
+  themeName: ThemeName;
+}) => {
   const tmpThemesFolder = path.join(
     gitRoot,
     'packages',

@@ -1,2 +1,2 @@
-module.exports = require('./lib/core');
-module.exports.default = require('./lib/core');
+export { main } from './lib/core';
+export { getTMPsiteVariables } from './lib/multi-themes';

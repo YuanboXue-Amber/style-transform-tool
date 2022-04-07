@@ -102,7 +102,7 @@ const computedNamespacedStyles =
     const styleF = exports[slotName][variable];
 
     if (styleF && typeof styleF === 'function') {
-      namespaceParmsWithStringTokens.variableProps = variableProps;
+      namespaceParmsWithStringTokens.variableProps = variableProps ?? {};
       const slotStyle = styleF(namespaceParmsWithStringTokens);
 
       if (Object.keys(slotStyle).length > 0) {
@@ -117,7 +117,13 @@ const computedNamespacedStyles =
 
 // Compute styles and assign to computedStyles[slotName][themeName]
 const computeStylesForOneTheme: ComputeOneTheme =
-  ({ gitRoot, themeName, currentThemeStylesFile, exportName }) =>
+  ({
+    themeName,
+    currentThemeStylesFile,
+    exportName,
+    preparedSiteVariables,
+    gitRoot,
+  }) =>
   ({
     isNamespaced,
     // namespaced
@@ -127,15 +133,18 @@ const computeStylesForOneTheme: ComputeOneTheme =
     componentProps,
   }) =>
   (computedStyles) => {
-    // let startT = process.hrtime();
+    const preparedSiteVariablesCurrentTheme =
+      preparedSiteVariables?.[themeName];
+    const siteVariables =
+      preparedSiteVariablesCurrentTheme ??
+      getTMPsiteVariables({ gitRoot, themeName });
+    if (preparedSiteVariables && !preparedSiteVariablesCurrentTheme) {
+      preparedSiteVariables[themeName] = siteVariables;
+    }
+
     const tmpTheme = {
-      siteVariables: getTMPsiteVariables({ gitRoot, themeName }) ?? {},
+      siteVariables: siteVariables ?? {},
     };
-    // console.log(
-    //   'computeStylesForOneTheme',
-    //   'getTMPsiteVariables',
-    //   hrToSeconds(process.hrtime(startT))
-    // );
 
     const themeWithStringTokens = replaceSiteVariblesToString(tmpTheme);
 
@@ -168,7 +177,7 @@ const computeStylesForOneTheme: ComputeOneTheme =
   };
 
 const computeAllThemes: ComputeStylesFromFile =
-  ({ gitRoot, inputFilename, exportName }) =>
+  ({ gitRoot, inputFilename, exportName, preparedSiteVariables }) =>
   ({
     isNamespaced,
     // namespaced
@@ -193,10 +202,11 @@ const computeAllThemes: ComputeStylesFromFile =
       }
 
       computeStylesForOneTheme({
-        gitRoot,
         themeName: themeName as ThemeName,
         currentThemeStylesFile,
         exportName,
+        gitRoot,
+        preparedSiteVariables,
       })({
         isNamespaced,
         // namespaced
@@ -211,7 +221,7 @@ const computeAllThemes: ComputeStylesFromFile =
   };
 
 const computeCurrentTheme: ComputeStylesFromFile =
-  ({ gitRoot, inputFilename, exportName }) =>
+  ({ gitRoot, inputFilename, exportName, preparedSiteVariables }) =>
   ({
     isNamespaced,
     // namespaced
@@ -231,10 +241,11 @@ const computeCurrentTheme: ComputeStylesFromFile =
     const computedStyles = {};
 
     computeStylesForOneTheme({
-      gitRoot,
       themeName: themeName as ThemeName,
       currentThemeStylesFile: inputFilename,
       exportName,
+      gitRoot,
+      preparedSiteVariables,
     })({
       isNamespaced,
       // namespaced
@@ -250,7 +261,12 @@ const computeCurrentTheme: ComputeStylesFromFile =
 // multi-theme handling end ---------
 
 export const main: Main =
-  ({ inputFilename, exportName, isTransformAllThemes }) =>
+  ({
+    inputFilename,
+    exportName,
+    isTransformAllThemes,
+    preparedSiteVariables,
+  }) =>
   ({
     isNamespaced,
     // namespaced
@@ -275,6 +291,7 @@ export const main: Main =
       gitRoot,
       inputFilename,
       exportName,
+      preparedSiteVariables,
     })({
       isNamespaced,
       // namespaced
