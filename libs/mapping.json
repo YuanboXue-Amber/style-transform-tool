@@ -8,7 +8,7 @@
     "foreground5": "colorNeutralStencil2",
     "foreground6": "colorNeutralStencil1",
     "foreground7": "colorNeutralForeground1",
-    "foreground8": "colorNeutralForeground3Hover",
+    "foreground8": "colorNeutralForeground2Selected",
     "foreground9": "colorNeutralForeground4",
 
     "background": "colorNeutralBackground1",
@@ -17,7 +17,7 @@
     "background3": "colorNeutralBackground4",
     "background4": "colorNeutralBackground6",
     "background5": "colorNeutralBackground6",
-    "background6": "colorNeutralBackgroundInverted",
+    "background6": "colorNeutralBackground5",
 
     "foregroundHover": "colorNeutralForeground2Hover",
     "foregroundHover1": "colorNeutralForegroundInvertedHover",
@@ -27,7 +27,7 @@
     "backgroundHover1": "colorNeutralBackground4Hover",
     "backgroundHover2": "colorTransparentBackgroundHover",
     "backgroundHover3": "colorNeutralBackground3",
-    "backgroundHover4": "colorNeutralBackground1",
+    "backgroundHover4": "colorNeutralBackground4Hover",
 
     "foregroundPressed": "colorNeutralForeground2Pressed",
     "backgroundPressed": "colorNeutralBackground1Pressed",

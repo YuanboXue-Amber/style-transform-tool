@@ -1,8 +1,50 @@
 diff --git a/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-dark-v2/siteVariables.js b/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-dark-v2/siteVariables.js
-index 7845336..8585905 100644
+index 7845336..a472c7b 100644
 --- a/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-dark-v2/siteVariables.js
 +++ b/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-dark-v2/siteVariables.js
-@@ -72,7 +72,7 @@ var colorScheme = {
+@@ -19,11 +19,12 @@ var colorScheme = {
+     foreground5: colors.grey['450'],
+     foreground6: colors.grey['550'],
+     foreground7: colors.grey['220'],
++    foreground8: colors.white,
+     background: colors.grey['700'],
+     background1: colors.grey['750'],
+     background2: colors.grey['800'],
+     background3: colors.grey['870'],
+-    background4: colors.grey['550'],
++    background4: colors.grey['600'],
+     background5: colors.grey['600'],
+     background6: colors.grey['910'],
+     background7: colors.grey['850'],
+@@ -39,19 +40,26 @@ var colorScheme = {
+     backgroundHover1: colors.grey['750'],
+     backgroundHover2: 'transparent',
+     backgroundHover3: colors.grey['650'],
+-    backgroundHover4: colors.grey['750'],
++    backgroundHover4: colors.grey['700'],
+     backgroundHover6: colors.grey['550'],
+     borderHover: colors.grey['430'],
+     foregroundPressed: colors.white,
+     backgroundPressed: colors.grey['650'],
+     backgroundPressed2: colors.grey['850'],
++    backgroundPressed3: colors.grey['800'],
+     foregroundActive: colors.white,
+     foregroundActive1: colors.white,
+     backgroundActive: colors.grey['600'],
+     backgroundActive1: colors.grey['800'],
++    backgroundActive2: colors.grey['575'],
+     borderActive: colors.grey['440'],
+     // foregroundFocus: not specified,
++    foregroundFocus1: colors.grey['220'],
++    foregroundFocus2: colors.grey['220'],
+     // backgroundFocus: not specified,
++    backgroundFocus1: colors.grey['700'],
++    backgroundFocus2: colors.grey['800'],
++    backgroundFocus3: colors.grey['600'],
+     borderFocus: colors.white,
+     borderFocusWithin: colors.black,
+     foregroundDisabled: colors.grey['460'],
+@@ -72,7 +80,7 @@ var colorScheme = {
      foreground2: colors.brand['450'],
      foreground3: colors.brand['200'],
      foreground4: colors.white,
@@ -11,7 +53,7 @@ index 7845336..8585905 100644
      border1: colors.brand['800'],
      border2: colors.brand['800'],
      foregroundHover: colors.brand['450'],
-@@ -91,7 +91,7 @@ var colorScheme = {
+@@ -91,7 +99,7 @@ var colorScheme = {
      foregroundActive2: colors.brand['50'],
      backgroundActive: colors.brand['450'],
      backgroundActive1: colors.brand['450'],
@@ -21,7 +63,7 @@ index 7845336..8585905 100644
      borderActive2: colors.brand['800'],
      foregroundFocus: colors.brand['450'],
 diff --git a/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-high-contrast/colors.js b/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-high-contrast/colors.js
-index 35a8eb6..7a892e0 100644
+index 35a8eb6..b59ac14 100644
 --- a/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-high-contrast/colors.js
 +++ b/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-high-contrast/colors.js
 @@ -7,7 +7,7 @@ var _siteVariables = require("../teams/siteVariables");
@@ -33,19 +75,39 @@ index 35a8eb6..7a892e0 100644
  exports.accessibleYellow = accessibleYellow;
  var accessibleGreen = '#3ff23f'; // always disabled color in high contrast
  
+@@ -89,7 +89,7 @@ var colorScheme = {
+     backgroundHover1: accessibleCyan,
+     backgroundHover2: accessibleCyan,
+     backgroundHover3: _siteVariables.colors.black,
+-    backgroundHover4: _siteVariables.colors.black,
++    backgroundHover4: accessibleCyan,
+     borderHover: accessibleCyan,
+     foregroundPressed: _siteVariables.colors.black,
+     backgroundPressed: accessibleCyan,
 diff --git a/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-v2/siteVariables.js b/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-v2/siteVariables.js
-index ca79811..a553f64 100644
+index ca79811..cd7df93 100644
 --- a/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-v2/siteVariables.js
 +++ b/node_modules/@fluentui/react-northstar/dist/commonjs/themes/teams-v2/siteVariables.js
-@@ -26,6 +26,7 @@ var colors = {
+@@ -13,6 +13,7 @@ var colors = {
+     50: '#f5f5f5',
+     100: '#f0f0f0',
+     150: '#ebebeb',
++    175: '#e6e6e6',
+     200: '#e0e0e0',
+     220: '#d6d6d6',
+     230: '#d1d1d1',
+@@ -26,8 +27,10 @@ var colors = {
      440: '#666',
      450: '#616161',
      460: '#5c5c5c',
 +    475: '#525252',
      500: '#424242',
      550: '#3d3d3d',
++    575: '#383838',
      600: '#333',
-@@ -40,16 +41,16 @@ var colors = {
+     650: '#2e2e2e',
+     700: '#292929',
+@@ -40,16 +43,16 @@ var colors = {
    },
    brand: {
      50: '#e8ebfa',
@@ -70,7 +132,42 @@ index ca79811..a553f64 100644
      1000: '#2f2f4a'
    }
  };
-@@ -111,7 +112,7 @@ var colorScheme = {
+@@ -64,11 +67,12 @@ var colorScheme = {
+     foreground5: colors.grey['100'],
+     foreground6: colors.grey['200'],
+     foreground7: colors.grey['450'],
++    foreground8: colors.grey['750'],
+     background: colors.white,
+     background1: colors.grey['25'],
+     background2: colors.grey['50'],
+     background3: colors.grey['100'],
+-    background4: colors.grey['150'],
++    background4: colors.grey['175'],
+     background5: colors.grey['200'],
+     background6: colors.grey['150'],
+     background7: colors.grey['50'],
+@@ -88,13 +92,20 @@ var colorScheme = {
+     foregroundPressed: colors.grey['750'],
+     backgroundPressed: colors.grey['200'],
+     backgroundPressed2: colors.grey['50'],
++    backgroundPressed3: colors.grey['200'],
+     foregroundActive: colors.grey['750'],
+     foregroundActive1: colors.white,
+     backgroundActive: colors.grey['150'],
+     backgroundActive1: colors.white,
++    backgroundActive2: colors.grey['150'],
+     borderActive: colors.grey['270'],
+     // foregroundFocus: not specified,
++    foregroundFocus1: colors.grey['500'],
++    foregroundFocus2: colors.grey['500'],
+     // backgroundFocus: not specified,
++    backgroundFocus1: colors.grey['25'],
++    backgroundFocus2: colors.grey['50'],
++    backgroundFocus3: colors.grey['150'],
+     borderFocus: colors.black,
+     borderFocusWithin: colors.white,
+     foregroundDisabled: colors.grey['250'],
+@@ -111,7 +122,7 @@ var colorScheme = {
      background4: colors.brand['800'],
      background5: colors.brand['100'],
      foreground: colors.brand['600'],
@@ -79,7 +176,7 @@ index ca79811..a553f64 100644
      foreground2: colors.brand['700'],
      foreground3: colors.brand['200'],
      foreground4: colors.white,
-@@ -134,7 +135,7 @@ var colorScheme = {
+@@ -134,7 +145,7 @@ var colorScheme = {
      foregroundActive2: colors.brand['50'],
      backgroundActive: colors.brand['600'],
      backgroundActive1: colors.brand['600'],
@@ -89,10 +186,53 @@ index ca79811..a553f64 100644
      borderActive2: colors.brand['300'],
      foregroundFocus: colors.brand['600'],
 diff --git a/node_modules/@fluentui/react-northstar/dist/dts/src/themes/teams-dark-v2/siteVariables.js b/node_modules/@fluentui/react-northstar/dist/dts/src/themes/teams-dark-v2/siteVariables.js
-index ddec8c0..f9c1555 100644
+index ddec8c0..866638b 100644
 --- a/node_modules/@fluentui/react-northstar/dist/dts/src/themes/teams-dark-v2/siteVariables.js
 +++ b/node_modules/@fluentui/react-northstar/dist/dts/src/themes/teams-dark-v2/siteVariables.js
-@@ -67,7 +67,7 @@ exports.colorScheme = {
+@@ -14,11 +14,12 @@ exports.colorScheme = {
+         foreground5: exports.colors.grey['450'],
+         foreground6: exports.colors.grey['550'],
+         foreground7: exports.colors.grey['220'],
++        foreground8: exports.colors.white,
+         background: exports.colors.grey['700'],
+         background1: exports.colors.grey['750'],
+         background2: exports.colors.grey['800'],
+         background3: exports.colors.grey['870'],
+-        background4: exports.colors.grey['550'],
++        background4: exports.colors.grey['600'],
+         background5: exports.colors.grey['600'],
+         background6: exports.colors.grey['910'],
+         background7: exports.colors.grey['850'],
+@@ -34,19 +35,27 @@ exports.colorScheme = {
+         backgroundHover1: exports.colors.grey['750'],
+         backgroundHover2: 'transparent',
+         backgroundHover3: exports.colors.grey['650'],
+-        backgroundHover4: exports.colors.grey['750'],
++        backgroundHover4: exports.colors.grey['700'],
+         backgroundHover6: exports.colors.grey['550'],
+         borderHover: exports.colors.grey['430'],
+         foregroundPressed: exports.colors.white,
+         backgroundPressed: exports.colors.grey['650'],
+         backgroundPressed2: exports.colors.grey['850'],
++        backgroundPressed3: exports.colors.grey['800'],
+         foregroundActive: exports.colors.white,
+         foregroundActive1: exports.colors.white,
+         backgroundActive: exports.colors.grey['600'],
+         backgroundActive1: exports.colors.grey['800'],
++        backgroundActive2: exports.colors.grey['575'],
+         borderActive: exports.colors.grey['440'],
+         // foregroundFocus: not specified,
++        foregroundFocus1: exports.colors.grey['220'],
++        foregroundFocus2: exports.colors.grey['220'],
++
+         // backgroundFocus: not specified,
++        backgroundFocus1: exports.colors.grey['700'],
++        backgroundFocus2: exports.colors.grey['800'],
++        backgroundFocus3: exports.colors.grey['600'],
+         borderFocus: exports.colors.white,
+         borderFocusWithin: exports.colors.black,
+         foregroundDisabled: exports.colors.grey['460'],
+@@ -67,7 +76,7 @@ exports.colorScheme = {
          foreground2: exports.colors.brand['450'],
          foreground3: exports.colors.brand['200'],
          foreground4: exports.colors.white,
@@ -101,7 +241,7 @@ index ddec8c0..f9c1555 100644
          border1: exports.colors.brand['800'],
          border2: exports.colors.brand['800'],
          foregroundHover: exports.colors.brand['450'],
-@@ -86,7 +86,7 @@ exports.colorScheme = {
+@@ -86,7 +95,7 @@ exports.colorScheme = {
          foregroundActive2: exports.colors.brand['50'],
          backgroundActive: exports.colors.brand['450'],
          backgroundActive1: exports.colors.brand['450'],
@@ -135,10 +275,52 @@ index 9924f47..c18e4ab 100644
          550: '#3d3d3d',
          600: '#333',
 diff --git a/node_modules/@fluentui/react-northstar/dist/es/themes/teams-dark-v2/siteVariables.js b/node_modules/@fluentui/react-northstar/dist/es/themes/teams-dark-v2/siteVariables.js
-index 0d235f4..4f38161 100644
+index 0d235f4..4f35eb6 100644
 --- a/node_modules/@fluentui/react-northstar/dist/es/themes/teams-dark-v2/siteVariables.js
 +++ b/node_modules/@fluentui/react-northstar/dist/es/themes/teams-dark-v2/siteVariables.js
-@@ -64,7 +64,7 @@ export var colorScheme = {
+@@ -11,11 +11,12 @@ export var colorScheme = {
+     foreground5: colors.grey['450'],
+     foreground6: colors.grey['550'],
+     foreground7: colors.grey['220'],
++    foreground8: colors.white,
+     background: colors.grey['700'],
+     background1: colors.grey['750'],
+     background2: colors.grey['800'],
+     background3: colors.grey['870'],
+-    background4: colors.grey['550'],
++    background4: colors.grey['600'],
+     background5: colors.grey['600'],
+     background6: colors.grey['910'],
+     background7: colors.grey['850'],
+@@ -31,19 +32,26 @@ export var colorScheme = {
+     backgroundHover1: colors.grey['750'],
+     backgroundHover2: 'transparent',
+     backgroundHover3: colors.grey['650'],
+-    backgroundHover4: colors.grey['750'],
++    backgroundHover4: colors.grey['700'],
+     backgroundHover6: colors.grey['550'],
+     borderHover: colors.grey['430'],
+     foregroundPressed: colors.white,
+     backgroundPressed: colors.grey['650'],
+     backgroundPressed2: colors.grey['850'],
++    backgroundPressed3: colors.grey['800'],
+     foregroundActive: colors.white,
+     foregroundActive1: colors.white,
+     backgroundActive: colors.grey['600'],
+     backgroundActive1: colors.grey['800'],
++    backgroundActive2: colors.grey['575'],
+     borderActive: colors.grey['440'],
+     // foregroundFocus: not specified,
++    foregroundFocus1: colors.grey['220'],
++    foregroundFocus2: colors.grey['220'],
+     // backgroundFocus: not specified,
++    backgroundFocus1: colors.grey['700'],
++    backgroundFocus2: colors.grey['800'],
++    backgroundFocus3: colors.grey['600'],
+     borderFocus: colors.white,
+     borderFocusWithin: colors.black,
+     foregroundDisabled: colors.grey['460'],
+@@ -64,7 +72,7 @@ export var colorScheme = {
      foreground2: colors.brand['450'],
      foreground3: colors.brand['200'],
      foreground4: colors.white,
@@ -147,7 +329,7 @@ index 0d235f4..4f38161 100644
      border1: colors.brand['800'],
      border2: colors.brand['800'],
      foregroundHover: colors.brand['450'],
-@@ -83,7 +83,7 @@ export var colorScheme = {
+@@ -83,7 +91,7 @@ export var colorScheme = {
      foregroundActive2: colors.brand['50'],
      backgroundActive: colors.brand['450'],
      backgroundActive1: colors.brand['450'],
@@ -157,7 +339,7 @@ index 0d235f4..4f38161 100644
      borderActive2: colors.brand['800'],
      foregroundFocus: colors.brand['450'],
 diff --git a/node_modules/@fluentui/react-northstar/dist/es/themes/teams-high-contrast/colors.js b/node_modules/@fluentui/react-northstar/dist/es/themes/teams-high-contrast/colors.js
-index ecc72aa..10dc2cd 100644
+index ecc72aa..27e23ca 100644
 --- a/node_modules/@fluentui/react-northstar/dist/es/themes/teams-high-contrast/colors.js
 +++ b/node_modules/@fluentui/react-northstar/dist/es/themes/teams-high-contrast/colors.js
 @@ -1,6 +1,6 @@
@@ -168,19 +350,39 @@ index ecc72aa..10dc2cd 100644
  export var accessibleGreen = '#3ff23f'; // always disabled color in high contrast
  
  export var accessibleCyan = '#1aebff';
+@@ -77,7 +77,7 @@ export var colorScheme = {
+     backgroundHover1: accessibleCyan,
+     backgroundHover2: accessibleCyan,
+     backgroundHover3: colors.black,
+-    backgroundHover4: colors.black,
++    backgroundHover4: accessibleCyan,
+     borderHover: accessibleCyan,
+     foregroundPressed: colors.black,
+     backgroundPressed: accessibleCyan,
 diff --git a/node_modules/@fluentui/react-northstar/dist/es/themes/teams-v2/siteVariables.js b/node_modules/@fluentui/react-northstar/dist/es/themes/teams-v2/siteVariables.js
-index e70da20..cbbf693 100644
+index e70da20..3feb280 100644
 --- a/node_modules/@fluentui/react-northstar/dist/es/themes/teams-v2/siteVariables.js
 +++ b/node_modules/@fluentui/react-northstar/dist/es/themes/teams-v2/siteVariables.js
-@@ -20,6 +20,7 @@ export var colors = {
+@@ -7,6 +7,7 @@ export var colors = {
+     50: '#f5f5f5',
+     100: '#f0f0f0',
+     150: '#ebebeb',
++    175: '#e6e6e6',
+     200: '#e0e0e0',
+     220: '#d6d6d6',
+     230: '#d1d1d1',
+@@ -20,8 +21,10 @@ export var colors = {
      440: '#666',
      450: '#616161',
      460: '#5c5c5c',
 +    475: '#525252',
      500: '#424242',
      550: '#3d3d3d',
++    575: '#383838',
      600: '#333',
-@@ -34,16 +35,16 @@ export var colors = {
+     650: '#2e2e2e',
+     700: '#292929',
+@@ -34,16 +37,16 @@ export var colors = {
    },
    brand: {
      50: '#e8ebfa',
@@ -205,7 +407,42 @@ index e70da20..cbbf693 100644
      1000: '#2f2f4a'
    }
  };
-@@ -104,7 +105,7 @@ export var colorScheme = {
+@@ -57,11 +60,12 @@ export var colorScheme = {
+     foreground5: colors.grey['100'],
+     foreground6: colors.grey['200'],
+     foreground7: colors.grey['450'],
++    foreground8: colors.grey['750'],
+     background: colors.white,
+     background1: colors.grey['25'],
+     background2: colors.grey['50'],
+     background3: colors.grey['100'],
+-    background4: colors.grey['150'],
++    background4: colors.grey['175'],
+     background5: colors.grey['200'],
+     background6: colors.grey['150'],
+     background7: colors.grey['50'],
+@@ -81,13 +85,20 @@ export var colorScheme = {
+     foregroundPressed: colors.grey['750'],
+     backgroundPressed: colors.grey['200'],
+     backgroundPressed2: colors.grey['50'],
++    backgroundPressed3: colors.grey['200'],
+     foregroundActive: colors.grey['750'],
+     foregroundActive1: colors.white,
+     backgroundActive: colors.grey['150'],
+     backgroundActive1: colors.white,
++    backgroundActive2: colors.grey['150'],
+     borderActive: colors.grey['270'],
+     // foregroundFocus: not specified,
++    foregroundFocus1: colors.grey['500'],
++    foregroundFocus2: colors.grey['500'],
+     // backgroundFocus: not specified,
++    backgroundFocus1: colors.grey['25'],
++    backgroundFocus2: colors.grey['50'],
++    backgroundFocus3: colors.grey['150'],
+     borderFocus: colors.black,
+     borderFocusWithin: colors.white,
+     foregroundDisabled: colors.grey['250'],
+@@ -104,7 +115,7 @@ export var colorScheme = {
      background4: colors.brand['800'],
      background5: colors.brand['100'],
      foreground: colors.brand['600'],
@@ -214,7 +451,7 @@ index e70da20..cbbf693 100644
      foreground2: colors.brand['700'],
      foreground3: colors.brand['200'],
      foreground4: colors.white,
-@@ -127,7 +128,7 @@ export var colorScheme = {
+@@ -127,7 +138,7 @@ export var colorScheme = {
      foregroundActive2: colors.brand['50'],
      backgroundActive: colors.brand['600'],
      backgroundActive1: colors.brand['600'],
