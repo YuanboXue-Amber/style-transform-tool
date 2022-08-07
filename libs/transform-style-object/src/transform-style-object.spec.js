@@ -25,6 +25,11 @@ describe('transformStyleObject', () => {
             ? colors.grey["250"]
             : colorSchemeBrand.borderPressed,
         },
+        fontSize: siteVariables.fontSizes.large,
+        fontSize: large,
+        fontWeight: fontWeightSemibold,
+        fontWeight: fontWeightBold,
+        lineHeight: lineHeightMedium,
       }`)
     ).toMatchInlineSnapshot(`
       " { // FIXME: ❌ Conditional expression detected. Only static values are allowed in makeStyles; please create separate slots for each condition and apply them using \`mergeClasses\`
@@ -49,7 +54,13 @@ describe('transformStyleObject', () => {
             // FIXME: ❌ No v9 matching found for token colorSchemeBrand.borderPressed
             // FIXME: ❌ Conditional expression detected. Only static values are allowed in makeStyles; please create separate slots for each condition and apply them using \`mergeClasses\`
             backgroundColor: isPositive ? colors.grey[\\"250\\"] : colorSchemeBrand.borderPressed
-          }
+          },
+          fontSize: tokens.fontSizeBase400,
+          fontSize: tokens.fontSizeBase400,
+          fontWeight: tokens.fontWeightSemibold,
+          // FIXME: ❌ No v9 matching found for token fontWeightBold
+          fontWeight: fontWeightBold,
+          lineHeight: tokens.lineHeightBase300
         }
       "
     `);
