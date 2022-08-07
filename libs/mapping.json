@@ -113,5 +113,28 @@
   "orange": {
     "background": "colorPaletteDarkOrangeBackground3",
     "border": "colorNeutralStroke1Selected"
+  },
+  "font": {
+    "size": {
+      "smaller": "fontSizeBase100",
+      "small": "fontSizeBase200",
+      "medium": "fontSizeBase300",
+      "large": "fontSizeBase400",
+      "larger": "fontSizeBase600",
+      "largest": "fontSizeHero700"
+    },
+    "weight": {
+      "regular": "fontWeightRegular",
+      "medium": "fontWeightMedium",
+      "semibold": "fontWeightSemibold"
+    },
+    "lineHeight": {
+      "smaller": "lineHeightBase100",
+      "small": "lineHeightBase200",
+      "medium": "lineHeightBase300",
+      "large": "lineHeightBase400",
+      "larger": "lineHeightBase600",
+      "largest": "lineHeightHero700"
+    }
   }
 }
