@@ -3,6 +3,22 @@ import { transformStylesObject } from './transform-style-object';
 describe('transformStyleObject', () => {
   it('should work', () => {
     expect(
+      transformStylesObject(` {
+      margin: "1rem 0 1rem 2rem",
+      color: colorSchemeDefault.foreground1,
+      fontWeight: fontWeightRegular,
+      fontSize: medium,
+    }`)
+    ).toMatchInlineSnapshot(`
+      " { ...shorthands.margin(\\"1rem\\", \\"0\\", \\"1rem\\", \\"2rem\\"),
+          color: tokens.colorNeutralForeground2,
+          fontWeight: tokens.fontWeightRegular,
+          fontSize: tokens.fontSizeBase300
+        }
+      "
+    `);
+
+    expect(
       transformStylesObject(`{ 
         overflow: isScroll ? 'scroll' : isHidden ? 'hidden' : "auto", 
         color: colorSchemeDefault.foreground,
@@ -45,7 +61,7 @@ describe('transformStyleObject', () => {
           // FIXME: ❌ unsupported css property, please manually expand shorthand
           textDecoration: \\"underline overline dotted\\",
           ...shorthands.borderRadius(1),
-          ...shorthands.border(\\".2rem\\", \\"solid\\", \`\${tokens.colorNeutralForeground2Hover}\`),
+          ...shorthands.border(\\".2rem\\", \\"solid\\", tokens.colorNeutralForeground2Hover),
           \\":hover\\": {
             color: tokens.colorNeutralForeground2Hover,
             backgroundColor: tokens.colorNeutralBackground4Hover

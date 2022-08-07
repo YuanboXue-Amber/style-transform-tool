@@ -48,7 +48,8 @@
           "buildTarget": "transform-styles:build:production",
           "hmr": false
         }
-      }
+      },
+      "dependsOn": [{ "projects": "dependencies", "target": "build" }]
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -67,5 +68,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["transform-style-object"]
+  "implicitDependencies": ["transform-style-object", "babel-plugin-shorthands"]
 }
