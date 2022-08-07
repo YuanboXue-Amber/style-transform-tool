@@ -9,7 +9,8 @@ export const useStyles = makeStyles({
     flex: 1,
     padding: "5px",
     background: tokens.colorNeutralForeground1,
-    background: 'red'
+    background: 'red',
+    border: \`.2rem solid $\{tokens.colorNeutralForeground2Hover}\`,
   },
 });
 `;
@@ -27,7 +28,8 @@ export const useStyles = makeStyles({
           flex: 1,
           SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.padding(\\"5px\\"),
           backgroundColor: tokens.colorNeutralForeground1,
-          backgroundColor: 'red'
+          backgroundColor: 'red',
+          SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.border(\\".2rem\\", \\"solid\\", tokens.colorNeutralForeground2Hover)
         }
       });"
     `);
