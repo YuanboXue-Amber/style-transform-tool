@@ -95,13 +95,22 @@ export function TransformApp({
               onClick={showObjectExample}
             />
           </div>
-          <Link to="../colors">
-            <Button
-              text
-              content="View all color tokens"
-              style={{ textDecoration: 'underline' }}
-            />
-          </Link>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Link tabIndex={-1} to="../colors">
+              <Button
+                text
+                content="🎨 View color mapping"
+                style={{ textDecoration: 'underline' }}
+              />
+            </Link>
+            <Link tabIndex={-1} to="../icons">
+              <Button
+                text
+                content="🎭 View icon mapping"
+                style={{ textDecoration: 'underline', marginTop: '-10px' }}
+              />
+            </Link>
+          </div>
         </div>
         <div
           style={{

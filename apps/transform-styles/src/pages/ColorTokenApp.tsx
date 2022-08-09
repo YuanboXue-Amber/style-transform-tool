@@ -36,13 +36,22 @@ export const ColorTokenApp = () => {
         }}
       >
         <Header as="h2" content={`v0 token ➡ v9 token`} />
-        <Link to="../transform">
-          <Button
-            text
-            content="convert tokens in styles"
-            style={{ textDecoration: 'underline' }}
-          />
-        </Link>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Link tabIndex={-1} to="../transform">
+            <Button
+              text
+              content="💅 Convert styles"
+              style={{ textDecoration: 'underline' }}
+            />
+          </Link>
+          <Link tabIndex={-1} to="../icons">
+            <Button
+              text
+              content="🎭 View icon mapping"
+              style={{ textDecoration: 'underline', marginTop: '-10px' }}
+            />
+          </Link>
+        </div>
       </div>
 
       <div style={{ display: 'flex', gap: 10 }}>

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter, useRoutes, Navigate } from 'react-router-dom';
 import { transformNameSpacedStyle, getAllVariables } from './loadBabel';
 import { transformStylesObject } from 'v9helper-transform-style-object';
-import { ColorTokenApp, TransformApp } from './pages';
+import { ColorTokenApp, TransformApp, IconMappingApp } from './pages';
 
 const Transform = () => (
   <TransformApp
@@ -22,6 +22,7 @@ const App = () => {
       element: <Transform />,
     },
     { path: 'colors', element: <ColorTokenApp /> },
+    { path: 'icons', element: <IconMappingApp /> },
     {
       path: '*',
       element: <Navigate to="/" />,
