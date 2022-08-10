@@ -29,11 +29,13 @@ export const transformShorthandsPlugin = ({ types: t }) => {
                   );
                   newSource = `${SHORTHANDS_KEYWORD_FOR_EASY_REPLACE}.${keyName}(${currSourceWithoutQuotes
                     .split(' ')
-                    .map((token) =>
-                      token.trim()[0] === '$'
-                        ? `\`${token.trim()}\``
-                        : `"${token.trim()}"`
-                    )
+                    .map((token) => {
+                      const trimmed = token.trim();
+                      if (trimmed[0] === '$') {
+                        return trimmed.slice(2, trimmed.length - 1);
+                      }
+                      return `"${trimmed}"`;
+                    })
                     .join(', ')})`;
                 } else {
                   newSource = `${SHORTHANDS_KEYWORD_FOR_EASY_REPLACE}.${keyName}(${value.toString()})`;

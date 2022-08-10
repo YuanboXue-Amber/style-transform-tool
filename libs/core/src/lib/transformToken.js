@@ -39,7 +39,7 @@ export const hasToken = (str) => str.indexOf('siteVariables_') >= 0;
 
 export const tokensV0toV9 = (str) => {
   const noReplacement = [];
-  const replacementValue = `\`${str
+  let replacementValue = `\`${str
     .split(' ')
     .map((word) => {
       if (!hasToken(word)) {
@@ -59,6 +59,9 @@ export const tokensV0toV9 = (str) => {
       return matchResult.replacement;
     })
     .join(' ')}\``;
+  if (replacementValue.startsWith('`${') && replacementValue.endsWith('}`')) {
+    replacementValue = replacementValue.slice(3, replacementValue.length - 2);
+  }
   return {
     value: replacementValue,
     comments: noReplacement,
@@ -66,30 +69,50 @@ export const tokensV0toV9 = (str) => {
 };
 
 const replaceOneToken = (token) => {
-  if (token.indexOf('siteVariables_colorScheme') >= 0) {
-    // token is color token
-    const keys = token.split('_');
-    let scheme, color;
-    for (let i = 0; i < keys.length; ++i) {
-      if (keys[i] === 'colorScheme') {
-        scheme = keys[i + 1];
-        color = keys[i + 2];
-        break;
-      }
-    }
-    if (scheme && color) {
-      const v9Token = mapping?.[scheme]?.[color];
-      if (v9Token) {
-        return {
-          replacement: `$\{tokens.${v9Token}}`,
-          hasMatch: true,
-        };
-      }
+  let v9Token;
+  if (mapping) {
+    if (token.indexOf('siteVariables_colorScheme') >= 0) {
+      v9Token = replaceColorToken(token);
+    } else if (token.indexOf('siteVariables_fontSizes_') >= 0) {
+      // font size token
+      const size = token.split('_')[2];
+      v9Token = mapping.font.size[size];
+    } else if (token.indexOf('siteVariables_fontWeight') >= 0) {
+      // font weight token
+      const weight = token.split('_')[1]?.slice(10)?.toLowerCase();
+      v9Token = mapping.font.weight[weight];
+    } else if (token.indexOf('siteVariables_lineHeight') >= 0) {
+      // line height token
+      const lineHeight = token.split('_')[1]?.slice(10)?.toLowerCase();
+      v9Token = mapping.font.lineHeight[lineHeight];
     }
   }
-  // token is not color token, use its value
-  return {
-    replacement: token.split('_').pop(),
-    hasMatch: false,
-  };
+
+  // token is not color/font token, use its value
+  return v9Token
+    ? {
+        replacement: `$\{tokens.${v9Token}}`,
+        hasMatch: true,
+      }
+    : {
+        replacement: token.split('_').pop(),
+        hasMatch: false,
+      };
+};
+
+const replaceColorToken = (token) => {
+  // token is color token
+  const keys = token.split('_');
+  let scheme, color;
+  for (let i = 0; i < keys.length; ++i) {
+    if (keys[i] === 'colorScheme') {
+      scheme = keys[i + 1];
+      color = keys[i + 2];
+      break;
+    }
+  }
+  if (scheme && color) {
+    return mapping?.[scheme]?.[color];
+  }
+  return null;
 };

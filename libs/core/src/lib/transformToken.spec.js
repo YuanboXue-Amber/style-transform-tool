@@ -1554,7 +1554,9 @@ describe('transform', () => {
   });
 
   it('tokensV0toV9', () => {
+    // mapping exist
     expect(mapping.default.foreground).toEqual('colorNeutralForeground1');
+    // color
     expect(
       tokensV0toV9(
         `1rem solid siteVariables_colorScheme_brand_foregroundDisabled1_#c7c7c7`
@@ -1575,6 +1577,37 @@ describe('transform', () => {
       Object {
         "comments": Array [],
         "value": "\`1rem solid \${tokens.colorNeutralBackground1}\`",
+      }
+    `);
+    // font
+    expect(tokensV0toV9('siteVariables_fontWeightSemilight_300'))
+      .toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [
+          " FIXME: ⚠️ No v9 matching found for token fontWeightSemilight, using its value \`300\` as placeholder",
+        ],
+        "value": "\`300\`",
+      }
+    `);
+    expect(tokensV0toV9('siteVariables_fontWeightRegular_400'))
+      .toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [],
+        "value": "tokens.fontWeightRegular",
+      }
+    `);
+    expect(tokensV0toV9('siteVariables_lineHeightLarge_1.3333'))
+      .toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [],
+        "value": "tokens.lineHeightBase400",
+      }
+    `);
+    expect(tokensV0toV9('siteVariables_fontSizes_smaller_0.625rem'))
+      .toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [],
+        "value": "tokens.fontSizeBase100",
       }
     `);
   });

@@ -10964,24 +10964,6 @@ v8-to-istanbul@^8.0.0, v8-to-istanbul@^8.1.0:
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
 
-v9helper-babel-plugin-shorthands@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/v9helper-babel-plugin-shorthands/-/v9helper-babel-plugin-shorthands-0.0.3.tgz#10e01ec31d442358b3931c7daa21e8808a5de3ca"
-  integrity sha512-QIpnjhDXPo1AzyrtNSlP+HQdDPeH/GoQ45gT/4pF3OrteXfE29ZMTVpqBeCrH7QGEJT/vzzSl2diL9c2aCa7/A==
-  dependencies:
-    "@babel/core" "^7.17.5"
-    "@griffel/core" "^1.0.7"
-
-v9helper-transform-style-object@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/v9helper-transform-style-object/-/v9helper-transform-style-object-0.0.3.tgz#18216baadab4c9382046ccbacc0ec0a0138c4823"
-  integrity sha512-Zfm0x/eRwvKRKVix/M45afxo6H9pE65DazlOY8N99OCrSiJOnk8ag8rFwKAMWIPkN/n8yORpOWQRI+/cwoCEsA==
-  dependencies:
-    "@babel/core" "^7.17.5"
-    "@babel/standalone" "^7.17.6"
-    "@griffel/core" "^1.0.7"
-    v9helper-babel-plugin-shorthands "^0.0.3"
-
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
