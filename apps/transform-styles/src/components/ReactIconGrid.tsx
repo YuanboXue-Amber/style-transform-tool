@@ -44,6 +44,12 @@ const useStyles = makeStyles({
     maxWidth: '320px',
     marginBottom: '10px',
   },
+
+  noteText: {
+    marginLeft: '50px',
+    marginRight: '50px',
+    marginBottom: '10px',
+  },
 });
 
 const useCardStyles = makeStyles({
@@ -84,7 +90,7 @@ const _renderIcon = ({ v0: V0Icon, v9: V9Icon }): JSX.Element => {
       }
     >
       <span className={classes.icon} key={V0Icon.displayName}>
-        <V0Icon />
+        <V0Icon outline />
         <div>{V0Icon.displayName.split('Icon')[0]}</div>
       </span>
       {V9Icon ? (
@@ -122,6 +128,17 @@ const ReactIconGrid = () => {
         onChange={_onSearchQueryChanged}
         className={styles.searchBox}
       />
+      <div className={styles.noteText}>
+        {'Note: both v0 and v9 Icons are shown as outlined (regular)'}
+      </div>
+      <div className={styles.noteText}>
+        For icons without match, if they are in components-fluent-ui-icons,
+        migrate them to components-teams-fluent-ui-icons using{' '}
+        <a href="https://domoreexp.visualstudio.com/DefaultCollection/Teamspace/_git/teams-modular-packages?path=/packages/components/components-teams-fluent-ui/docs/components/migrate-Icon.md&version=GC45e240797eefe7f3e28ad10c726fcb782c4aeff0&line=110&lineEnd=111&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents">
+          wrapIcon
+        </a>
+        . Otherwise please contact fluent team.
+      </div>
       <div className={styles.grid}>{filteredIcons.map(_renderIcon)}</div>
     </div>
   );
