@@ -15,7 +15,7 @@ const getIcons = (exports) => {
 const tmpIcons = getIcons(tmpExports);
 const v9Icons = getIcons(v9Exports);
 const v9IconsNames = v9Icons.map(
-  (icon) => icon.displayName.match(/([a-zA-Z]+)(\d+|)(Filled|Regular)/)[1]
+  (icon) => icon.displayName.match(/([a-zA-Z0-9]+)(\d\d|)(Filled|Regular)/)[1]
 );
 
 export const iconMapping = (() => {
