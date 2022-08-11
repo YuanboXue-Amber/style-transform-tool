@@ -68,7 +68,7 @@ describe('transformStyleObject', () => {
           },
           \\":active\\": {
             // FIXME: ❌ No v9 matching found for token colorSchemeBrand.borderPressed
-            // FIXME: ⚠️ No v9 matching found for token colors.grey[\\"250\\"], using its value \`#c7c7c7\` as placeholder
+            // FIXME: ⚠️ No v9 matching found for token colors.grey[\\"250\\"], its value is \`#c7c7c7\`
             // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
             // FIXME: ❌ Conditional expression detected. Only static values are allowed in makeStyles; please create separate slots for each condition and apply them using \`mergeClasses\`
             backgroundColor: isPositive ? colors.grey[\\"250\\"] : colorSchemeBrand.borderPressed
@@ -90,10 +90,10 @@ describe('transformStyleObject', () => {
     }`)
     ).toMatchInlineSnapshot(`
       " {
-          // FIXME: ⚠️ No v9 matching found for token colors.brand[\\"500\\"], using its value \`#7579eb\` as placeholder
+          // FIXME: ⚠️ No v9 matching found for token colors.brand[\\"500\\"], its value is \`#7579eb\`
           // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
           color: colors.brand[\\"500\\"],
-          // FIXME: ⚠️ No v9 matching found for token grey[\\"550\\"], using its value \`#3d3d3d\` as placeholder
+          // FIXME: ⚠️ No v9 matching found for token grey[\\"550\\"], its value is \`#3d3d3d\`
           // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
           backgroundColor: grey[\\"550\\"]
         }

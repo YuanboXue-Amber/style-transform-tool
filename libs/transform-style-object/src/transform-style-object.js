@@ -81,7 +81,7 @@ const transformColorToken = (t, path) => {
         );
         parent.addComment(
           'leading',
-          ` FIXME: ⚠️ No v9 matching found for token ${path.toString()}, using its value \`${colorHex}\` as placeholder`,
+          ` FIXME: ⚠️ No v9 matching found for token ${path.toString()}, its value is \`${colorHex}\``,
           true
         );
       }
