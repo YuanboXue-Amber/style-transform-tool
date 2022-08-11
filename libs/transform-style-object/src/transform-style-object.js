@@ -4,6 +4,9 @@ import {
   transformShorthandsPlugin,
 } from 'v9helper-babel-plugin-shorthands';
 import { mapping } from './mapping';
+import { teamsV2Theme } from '@fluentui/react-northstar';
+
+const colors = teamsV2Theme.siteVariables.colors;
 
 const v0ToV9 = ({ scheme, token }) => mapping[`${scheme}`]?.[`${token}`];
 
@@ -44,6 +47,7 @@ const transformColorToken = (t, path) => {
   const key = path.get('object');
   const value = path.get('property');
   if (t.isIdentifier(key) && t.isIdentifier(value)) {
+    // may be color token
     const scheme = ALL_SCHEMES.find((schemeName) =>
       key.node.name.toLowerCase().includes(schemeName)
     );
@@ -55,6 +59,34 @@ const transformColorToken = (t, path) => {
       } else {
         addFixMe(t, path);
       }
+    }
+  } else if (t.isLiteral(value)) {
+    // may be single color
+    const colorGroup = key.toString().split('.').pop();
+    const valueStr = value.toString();
+    const colorNumber = valueStr.startsWith('"')
+      ? valueStr.slice(1, valueStr.length - 1)
+      : valueStr;
+    const colorHex = colors[colorGroup]?.[colorNumber];
+    if (colorHex) {
+      let parent = path.parentPath;
+      while (parent && !t.isObjectProperty(parent)) {
+        parent = parent.parentPath;
+      }
+      if (parent) {
+        parent.addComment(
+          'leading',
+          ` You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page`,
+          true
+        );
+        parent.addComment(
+          'leading',
+          ` FIXME: ⚠️ No v9 matching found for token ${path.toString()}, using its value \`${colorHex}\` as placeholder`,
+          true
+        );
+      }
+    } else {
+      addFixMe(t, path);
     }
   }
 };

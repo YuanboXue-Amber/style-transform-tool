@@ -19,8 +19,8 @@ describe('transformStyleObject', () => {
     `);
 
     expect(
-      transformStylesObject(`{ 
-        overflow: isScroll ? 'scroll' : isHidden ? 'hidden' : "auto", 
+      transformStylesObject(`{
+        overflow: isScroll ? 'scroll' : isHidden ? 'hidden' : "auto",
         color: colorSchemeDefault.foreground,
         background: colorSchemeDefault.background,
         backgroundColor: colorSchemeDefault.background,
@@ -68,6 +68,8 @@ describe('transformStyleObject', () => {
           },
           \\":active\\": {
             // FIXME: ❌ No v9 matching found for token colorSchemeBrand.borderPressed
+            // FIXME: ⚠️ No v9 matching found for token colors.grey[\\"250\\"], using its value \`#c7c7c7\` as placeholder
+            // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
             // FIXME: ❌ Conditional expression detected. Only static values are allowed in makeStyles; please create separate slots for each condition and apply them using \`mergeClasses\`
             backgroundColor: isPositive ? colors.grey[\\"250\\"] : colorSchemeBrand.borderPressed
           },
@@ -77,6 +79,23 @@ describe('transformStyleObject', () => {
           // FIXME: ❌ No v9 matching found for token fontWeightBold
           fontWeight: fontWeightBold,
           lineHeight: tokens.lineHeightBase300
+        }
+      "
+    `);
+
+    expect(
+      transformStylesObject(`{
+      color: colors.brand["500"],
+      background: grey["550"],
+    }`)
+    ).toMatchInlineSnapshot(`
+      " {
+          // FIXME: ⚠️ No v9 matching found for token colors.brand[\\"500\\"], using its value \`#7579eb\` as placeholder
+          // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
+          color: colors.brand[\\"500\\"],
+          // FIXME: ⚠️ No v9 matching found for token grey[\\"550\\"], using its value \`#3d3d3d\` as placeholder
+          // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
+          backgroundColor: grey[\\"550\\"]
         }
       "
     `);

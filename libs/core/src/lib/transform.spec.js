@@ -88,4 +88,23 @@ describe('transform', () => {
       }
     });"
   `);
+  expect(
+    transform(`export const useStyles = makeStyles({
+      root: { 
+        color: 'siteVariables_colors_brand_100_#dce0fa', 
+        border: 'solid 0.1rem siteVariables_colors_grey_270_#bdbdbd', 
+      },
+    });`)
+  ).toMatchInlineSnapshot(`
+    "export const useStyles = makeStyles({
+      root: {
+        // FIXME: ⚠️ No v9 matching found for token colors.brand.100, using its value \`#dce0fa\` as placeholder
+        // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
+        color: \`#dce0fa\`,
+        // FIXME: ⚠️ No v9 matching found for token colors.grey.270, using its value \`#bdbdbd\` as placeholder
+        // You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page
+        ...shorthands.border(\\"solid\\", \\"0.1rem\\", \`#bdbdbd\`)
+      }
+    });"
+  `);
 });

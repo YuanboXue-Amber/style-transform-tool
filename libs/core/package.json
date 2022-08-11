@@ -1,6 +1,6 @@
 {
   "name": "v9helper",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "src/index.js",
   "sideEffects": false,
   "bin": {
@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.16.7",
-    "v9helper-babel-plugin-shorthands": "^0.0.3"
+    "v9helper-babel-plugin-shorthands": "^0.0.4"
   }
 }

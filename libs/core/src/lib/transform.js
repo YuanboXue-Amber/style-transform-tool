@@ -15,11 +15,9 @@ const transformTokenPlugin = () => {
 
           if (replacementResult.comments.length) {
             // found token without matching in v9, add comments for them
-            path.parentPath.addComment(
-              'leading',
-              replacementResult.comments,
-              true
-            );
+            replacementResult.comments.reverse().forEach((comment) => {
+              path.parentPath.addComment('leading', comment, true);
+            });
           }
         }
       },

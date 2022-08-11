@@ -1579,6 +1579,16 @@ describe('transform', () => {
         "value": "\`1rem solid \${tokens.colorNeutralBackground1}\`",
       }
     `);
+    expect(tokensV0toV9(`1rem solid siteVariables_colors_grey_150_#ebebeb`))
+      .toMatchInlineSnapshot(`
+      Object {
+        "comments": Array [
+          " FIXME: ⚠️ No v9 matching found for token colors.grey.150, using its value \`#ebebeb\` as placeholder",
+          " You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page",
+        ],
+        "value": "\`1rem solid #ebebeb\`",
+      }
+    `);
     // font
     expect(tokensV0toV9('siteVariables_fontWeightSemilight_300'))
       .toMatchInlineSnapshot(`

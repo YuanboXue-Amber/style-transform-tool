@@ -55,6 +55,14 @@ export const tokensV0toV9 = (str) => {
             '.'
           )}, using its value \`${matchResult.replacement}\` as placeholder`
         );
+        if (
+          tokenName[0] === 'colors' &&
+          matchResult.replacement.startsWith('#')
+        ) {
+          noReplacement.push(
+            ' You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page'
+          );
+        }
       }
       return matchResult.replacement;
     })
