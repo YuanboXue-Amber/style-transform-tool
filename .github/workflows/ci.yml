@@ -38,10 +38,10 @@ jobs:
 
       - run: yarn install --immutable
       - run: yarn check-dependencies
-      - run: yarn nx affected --base=master --target=lint --parallel --max-parallel=3
-      - run: yarn nx affected --base=master --target=type-check --parallel --max-parallel=3
-      - run: yarn nx affected --base=master --target=build --parallel --max-parallel=2
-      - run: yarn nx affected --base=master --target=test --parallel --max-parallel=2
+      - run: yarn nx affected --base=origin/master~1 --target=lint --parallel --max-parallel=3
+      - run: yarn nx affected --base=origin/master~1 --target=type-check --parallel --max-parallel=3
+      - run: yarn nx affected --base=origin/master~1 --target=build --parallel --max-parallel=2
+      - run: yarn nx affected --base=origin/master~1 --target=test --parallel --max-parallel=2
 
   pr:
     runs-on: ubuntu-latest
@@ -74,7 +74,7 @@ jobs:
 
       - run: yarn install --immutable
       - run: yarn check-dependencies
-      - run: yarn nx affected --base=master --target=lint --parallel --max-parallel=3
-      - run: yarn nx affected --base=master --target=type-check --parallel --max-parallel=3
-      - run: yarn nx affected --base=master --target=build --parallel --max-parallel=3
-      - run: yarn nx affected --base=master --target=test --parallel --max-parallel=2
+      - run: yarn nx affected --base=origin/master --target=lint --parallel --max-parallel=3
+      - run: yarn nx affected --base=origin/master --target=type-check --parallel --max-parallel=3
+      - run: yarn nx affected --base=origin/master --target=build --parallel --max-parallel=3
+      - run: yarn nx affected --base=origin/master --target=test --parallel --max-parallel=2
