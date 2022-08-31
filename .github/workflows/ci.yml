@@ -9,14 +9,15 @@ jobs:
   main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
+    env:
+      CI: false
+      NODE_AUTH_NAME: ${{ secrets.AZURE_NPM_NAME }}
+      NODE_AUTH_TOKEN: ${{ secrets.AZURE_NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
         name: Checkout [main]
         with:
           fetch-depth: 0
-
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
 
       - uses: actions/setup-node@v1
         with:
@@ -45,13 +46,14 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    env:
+      CI: false
+      NODE_AUTH_NAME: ${{ secrets.AZURE_NPM_NAME }}
+      NODE_AUTH_TOKEN: ${{ secrets.AZURE_NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
 
       - uses: actions/setup-node@v1
         with:
