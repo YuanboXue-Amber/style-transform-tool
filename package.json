@@ -8,9 +8,14 @@
     "test": "nx affected:test --all",
     "install:cli": "nx build:cli core && cd dist/libs/v9helper && npm install -g .",
     "publish:cli": "nx build:cli core && rm -r dist/libs/v9helper/node_modules && npm publish dist/libs/v9helper --tag testing-new-feature",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "check-dependencies": "syncpack list-mismatches --prod --peer"
   },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YuanboXue-Amber/style-transform-tool"
+  },
   "dependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-typescript": "^7.16.7",
@@ -74,6 +79,7 @@
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.5.1",
     "react-test-renderer": "17.0.2",
+    "syncpack": "^8.2.4",
     "ts-jest": "27.0.5",
     "typescript": "~4.5.2"
   },

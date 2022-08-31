@@ -15,6 +15,7 @@ import { transformTokenPlugin } from 'v9helper-transform-style-object';
 export const plugins: any = {};
 
 plugins['babel-transform-namespaced-styles'] =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   require('./lib/babel-transform-namespaced-styles.js').default;
 plugins['babel-transform-shorthands'] = transformShorthandsPlugin;
 

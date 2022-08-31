@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export interface VariablesContextOptions {
   allVariables: string[];
@@ -9,5 +9,6 @@ export interface VariablesContextOptions {
 export const VariablesContext = React.createContext<VariablesContextOptions>({
   allVariables: [],
   selectedVariables: [],
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setSelectedVariables: () => {},
 });
