@@ -44,7 +44,7 @@ export const transformNameSpacedStyle: TransformNameSpacedStyle = (
     });
 
     return {
-      code: resultFromBabel.code,
+      code: resultFromBabel.code as string,
       hasMultiSlots: isMultiSlot(resultFromBabel),
     };
   } catch (error) {
