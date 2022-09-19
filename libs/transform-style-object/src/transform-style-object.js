@@ -61,7 +61,9 @@ const transformColorToken = (t, path) => {
       const token = value.node.name;
       const v9token = v0ToV9({ scheme, token });
       if (v9token) {
-        path.replaceWithSourceString(`tokens.${v9token}`);
+        path.replaceWith(
+          t.memberExpression(t.identifier('tokens'), t.identifier(v9token))
+        );
       } else {
         addFixMe(t, path);
       }
@@ -105,7 +107,9 @@ const transfromFont = (t, path) => {
   const transform = (v0Token, v0ToV9Func) => {
     const v9token = v0ToV9Func(v0Token);
     if (v9token) {
-      value.replaceWithSourceString(`tokens.${v9token}`);
+      value.replaceWith(
+        t.memberExpression(t.identifier('tokens'), t.identifier(v9token))
+      );
     } else {
       addFixMe(t, value);
     }
@@ -179,10 +183,10 @@ const transformShorthandsInStyleObject = (code) => {
     const resultFromBabel = Babel.transform(
       `export const useStyles = makeStyles({special_root: \n ${code}})`,
       {
-        babelrc: false,
-        configFile: false,
-        filename: 'styles.ts',
-        presets: ['typescript'],
+        presets: [
+          [Babel.availablePresets['typescript'], { allExtensions: true }],
+        ],
+        filename: 'file.js',
         plugins: [[transformTokenPlugin], [transformShorthandsPlugin]],
       }
     );
@@ -195,6 +199,7 @@ const transformShorthandsInStyleObject = (code) => {
       );
     return extractStyleObject ?? code;
   } catch (error) {
+    console.warn('Transform style object error:', error);
     return code;
   }
 };

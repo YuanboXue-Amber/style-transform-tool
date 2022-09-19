@@ -1,6 +1,30 @@
 import { supportedShorthandsKeys, allShorthandsKeys } from './shorthands';
-import * as parser from '@babel/parser';
-import traverse from '@babel/traverse';
+
+function splitTemplateLiteral({ path, t }) {
+  const expressions = path.get('expressions');
+  const quasis = path.get('quasis');
+  const result = [];
+
+  let idx = 0;
+  let readQuasi = true;
+  while (idx < quasis.length) {
+    const arg = readQuasi ? quasis[idx] : expressions[idx];
+
+    if (readQuasi) {
+      arg.node.value.cooked
+        .split(' ')
+        .map((token) => token && result.push(t.stringLiteral(token.trim())));
+    } else {
+      if (arg) {
+        result.push(arg.node);
+      }
+      idx++;
+    }
+
+    readQuasi = !readQuasi;
+  }
+  return result;
+}
 
 export const transformShorthandsPlugin = ({ types: t }) => {
   return {
@@ -12,51 +36,37 @@ export const transformShorthandsPlugin = ({ types: t }) => {
           const keyName = path.node.key.name;
 
           if (supportedShorthandsKeys.includes(keyName)) {
-            let newSource;
+            let args = [];
             if (t.isStringLiteral(value)) {
-              newSource = `...shorthands.${keyName}(${value.node.value
+              args = value.node.value
                 .split(' ')
-                .map((token) => `"${token.trim()}"`)
-                .join(', ')})`;
+                .map((token) => t.stringLiteral(token.trim()));
             } else if (t.isTemplateLiteral(value)) {
-              const currSource = value.toString();
-              const currSourceWithoutQuotes = currSource.slice(
-                1,
-                currSource.length - 1
-              );
-              newSource = `...shorthands.${keyName}(${currSourceWithoutQuotes
-                .split(' ')
-                .map((token) => {
-                  const trimmed = token.trim();
-                  if (trimmed[0] === '$') {
-                    return trimmed.slice(2, trimmed.length - 1);
-                  }
-                  return `"${trimmed}"`;
-                })
-                .join(', ')})`;
+              args = splitTemplateLiteral({ path: value, t });
             } else {
-              newSource = `...shorthands.${keyName}(${value.toString()})`;
+              args = [value.node];
             }
 
-            const ast = parser.parse(`const a = { ${newSource} } `);
-            traverse(ast, {
-              SpreadElement(newPath) {
-                path.replaceWith(newPath);
-              },
-            });
+            path.replaceWith(
+              t.spreadElement(
+                t.callExpression(
+                  t.memberExpression(
+                    t.identifier('shorthands'),
+                    t.identifier(keyName)
+                  ),
+                  args
+                )
+              )
+            );
           } else if (allShorthandsKeys.includes(keyName)) {
             if (
-              t.isMemberExpression(value) &&
-              value.toString().indexOf('tokens.color') === 0
-            ) {
               // `xxx: token.color` -> `xxxColor: token.color`
-              key.replaceWithSourceString(`${key.toString()}Color`);
-            } else if (
-              keyName === 'background' &&
-              value.toString().indexOf(' ') < 0
-            ) {
+              (t.isMemberExpression(value) &&
+                value.toString().indexOf('tokens.color') === 0) ||
               // `background: yyy` where yyy has no space -> `backgroundColor: yyy`
-              key.replaceWithSourceString(`${key.toString()}Color`);
+              (keyName === 'background' && value.toString().indexOf(' ') < 0)
+            ) {
+              key.replaceWith(t.Identifier(`${key.toString()}Color`));
             } else {
               key.addComment(
                 'leading',
