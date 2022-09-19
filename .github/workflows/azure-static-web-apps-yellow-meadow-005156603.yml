@@ -15,8 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     env:
-      CI: false
-      YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
+      AZURE_AUTH_IDENT: ${{ secrets.AZURE_AUTH_IDENT }}
     steps:
       - uses: actions/checkout@v2
         with:
