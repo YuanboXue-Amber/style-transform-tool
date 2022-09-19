@@ -47,7 +47,9 @@ jobs:
     env:
       YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
     steps:
-      - uses: AutoModality/action-clean@v1
+      - run: rm .yarnrc || true
+      - run: rm ~/.yarnrc || true
+      - run: rm ~/.yarnrc* || true
 
       - uses: actions/checkout@v2
         with:
