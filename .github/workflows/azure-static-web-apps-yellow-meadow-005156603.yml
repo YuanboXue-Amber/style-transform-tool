@@ -16,7 +16,7 @@ jobs:
     name: Build and Deploy Job
     env:
       CI: false
-      YARN_AUTH_INDENT: ${{ secrets.AZURE_NPM_INDENT }}
+      YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
     steps:
       - uses: actions/checkout@v2
         with:
