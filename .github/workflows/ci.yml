@@ -68,6 +68,7 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
+      - run: yarn config -v
       - run: yarn install --immutable
       - run: yarn check-dependencies
       - run: yarn nx affected --base=origin/master --target=lint --parallel --max-parallel=3
