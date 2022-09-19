@@ -39,7 +39,7 @@ export const hasToken = (str) => str.indexOf('siteVariables_') >= 0;
 
 export const tokensV0toV9 = (str) => {
   const comments = [];
-  let replacementValue = `\`${str
+  let replacementValue = `${str
     .split(' ')
     .map((word) => {
       if (!hasToken(word)) {
@@ -69,10 +69,18 @@ export const tokensV0toV9 = (str) => {
       }
       return matchResult.replacement;
     })
-    .join(' ')}\``;
-  if (replacementValue.startsWith('`${') && replacementValue.endsWith('}`')) {
-    replacementValue = replacementValue.slice(3, replacementValue.length - 2);
+    .join(' ')}`;
+
+  if (replacementValue.includes('${')) {
+    if (replacementValue.startsWith('${') && replacementValue.endsWith('}')) {
+      replacementValue = replacementValue.slice(2, replacementValue.length - 1);
+    } else {
+      replacementValue = '`' + replacementValue + '`';
+    }
+  } else {
+    replacementValue = '"' + replacementValue + '"';
   }
+
   return {
     value: replacementValue,
     comments,

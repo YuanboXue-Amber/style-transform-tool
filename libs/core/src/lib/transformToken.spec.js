@@ -1571,7 +1571,7 @@ describe('transform', () => {
         "comments": Array [
           " FIXME: ⚠️ No v9 matching found for token colorScheme.brand.foregroundDisabled1, using its value \`#c7c7c7\` as placeholder",
         ],
-        "value": "\`1rem solid #c7c7c7\`",
+        "value": "\\"1rem solid #c7c7c7\\"",
       }
     `);
     expect(
@@ -1591,7 +1591,7 @@ describe('transform', () => {
           " FIXME: ⚠️ No v9 matching found for token colors.grey.150, using its value \`#ebebeb\` as placeholder",
           " You can locate a token in https://react.fluentui.dev/?path=/docs/theme-color--page",
         ],
-        "value": "\`1rem solid #ebebeb\`",
+        "value": "\\"1rem solid #ebebeb\\"",
       }
     `);
     // font
@@ -1601,7 +1601,7 @@ describe('transform', () => {
         "comments": Array [
           " FIXME: ⚠️ No v9 matching found for token fontWeightSemilight, using its value \`300\` as placeholder",
         ],
-        "value": "\`300\`",
+        "value": "\\"300\\"",
       }
     `);
     expect(tokensV0toV9('siteVariables_fontWeightRegular_400'))
