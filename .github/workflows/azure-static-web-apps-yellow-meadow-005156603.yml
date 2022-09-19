@@ -16,8 +16,7 @@ jobs:
     name: Build and Deploy Job
     env:
       CI: false
-      NODE_AUTH_NAME: ${{ secrets.AZURE_NPM_NAME }}
-      NODE_AUTH_TOKEN: ${{ secrets.AZURE_NPM_TOKEN }}
+      YARN_AUTH_INDENT: ${{ secrets.AZURE_NPM_INDENT }}
     steps:
       - uses: actions/checkout@v2
         with:
