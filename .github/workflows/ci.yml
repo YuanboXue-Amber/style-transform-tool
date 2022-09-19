@@ -9,9 +9,6 @@ jobs:
   main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
-    env:
-      CI: false
-      YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
     steps:
       - uses: actions/checkout@v2
         name: Checkout [main]
@@ -35,7 +32,6 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
-      - run: yarn set version berry
       - run: yarn install --immutable
       - run: yarn check-dependencies
       - run: yarn nx affected --base=origin/master~1 --target=lint --parallel --max-parallel=3
@@ -46,9 +42,6 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
-    env:
-      CI: false
-      YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -71,7 +64,6 @@ jobs:
           restore-keys: |
             yarn-cache-folder-
 
-      - run: yarn set version berry
       - run: yarn install --immutable
       - run: yarn check-dependencies
       - run: yarn nx affected --base=origin/master --target=lint --parallel --max-parallel=3
