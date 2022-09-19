@@ -1,8 +1,5 @@
 import * as Babel from '@babel/standalone';
-import {
-  transformShorthandsHelper,
-  transformShorthandsPlugin,
-} from 'v9helper-babel-plugin-shorthands';
+import { transformShorthandsPlugin } from 'v9helper-babel-plugin-shorthands';
 import { mapping } from './mapping';
 import { teamsV2Theme } from '@fluentui/react-northstar';
 
@@ -192,12 +189,9 @@ const transformShorthandsInStyleObject = (code) => {
 
     const extractStyleObject =
       resultFromBabel.code &&
-      transformShorthandsHelper(
-        resultFromBabel.code.slice(
-          resultFromBabel.code.indexOf('special_root:') +
-            'special_root:'.length,
-          resultFromBabel.code.length - 3
-        )
+      resultFromBabel.code.slice(
+        resultFromBabel.code.indexOf('special_root:') + 'special_root:'.length,
+        resultFromBabel.code.length - 3
       );
     return extractStyleObject ?? code;
   } catch (error) {

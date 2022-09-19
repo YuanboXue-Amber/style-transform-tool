@@ -1,9 +1,6 @@
 import * as Babel from '@babel/standalone';
 import { hasToken, tokensV0toV9 } from './transformToken';
-import {
-  transformShorthandsHelper,
-  transformShorthandsPlugin,
-} from 'v9helper-babel-plugin-shorthands';
+import { transformShorthandsPlugin } from 'v9helper-babel-plugin-shorthands';
 
 const transformTokenPlugin = () => {
   return {
@@ -36,5 +33,5 @@ export const transform = (sourceCode) => {
     throw new Error(`Failed to transform due to unknown Babel error...`);
   }
 
-  return transformShorthandsHelper(babelFileResult.code);
+  return babelFileResult.code;
 };

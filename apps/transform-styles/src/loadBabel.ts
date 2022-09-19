@@ -6,10 +6,7 @@ import type {
   ObjectExpression,
   ObjectProperty,
 } from '@babel/types';
-import {
-  transformShorthandsHelper,
-  transformShorthandsPlugin,
-} from 'v9helper-babel-plugin-shorthands';
+import { transformShorthandsPlugin } from 'v9helper-babel-plugin-shorthands';
 import { transformTokenPlugin } from 'v9helper-transform-style-object';
 
 export const plugins: any = {};
@@ -47,7 +44,7 @@ export const transformNameSpacedStyle: TransformNameSpacedStyle = (
     });
 
     return {
-      code: transformShorthandsHelper(resultFromBabel.code),
+      code: resultFromBabel.code,
       hasMultiSlots: isMultiSlot(resultFromBabel),
     };
   } catch (error) {

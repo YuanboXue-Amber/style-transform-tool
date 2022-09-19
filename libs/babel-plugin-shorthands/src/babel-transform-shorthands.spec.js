@@ -26,10 +26,10 @@ export const useStyles = makeStyles({
         root: {
           // FIXME: ❌ unsupported css property, please manually expand shorthand
           flex: 1,
-          SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.padding(\\"5px\\"),
+          ...shorthands.padding(\\"5px\\"),
           backgroundColor: tokens.colorNeutralForeground1,
           backgroundColor: 'red',
-          SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.border(\\".2rem\\", \\"solid\\", tokens.colorNeutralForeground2Hover)
+          ...shorthands.border(\\".2rem\\", \\"solid\\", tokens.colorNeutralForeground2Hover)
         }
       });"
     `);
@@ -52,7 +52,7 @@ export const useStyles = makeStyles({
       }).code
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
-        root: { SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.borderWidth(5)
+        root: { ...shorthands.borderWidth(5)
         }
       });"
     `);
@@ -75,7 +75,7 @@ export const useStyles = makeStyles({
       }).code
     ).toMatchInlineSnapshot(`
       "export const useStyles = makeStyles({
-        root: { SHORTHANDS_KEYWORD_FOR_EASY_REPLACE.overflow(isScroll ? 'scroll' : isHidden ? 'hidden' : \\"auto\\")
+        root: { ...shorthands.overflow(isScroll ? 'scroll' : isHidden ? 'hidden' : \\"auto\\")
         }
       });"
     `);
