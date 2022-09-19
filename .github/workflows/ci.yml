@@ -47,10 +47,6 @@ jobs:
     env:
       YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
     steps:
-      - run: rm .yarnrc || true
-      - run: rm ~/.yarnrc || true
-      - run: rm ~/.yarnrc* || true
-
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
