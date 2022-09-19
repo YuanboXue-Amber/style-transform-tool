@@ -47,6 +47,8 @@ jobs:
     env:
       YARN_AUTH_IDENT: ${{ secrets.YARN_AUTH_IDENT }}
     steps:
+      - uses: AutoModality/action-clean@v1
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
