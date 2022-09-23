@@ -1,8 +1,0 @@
-{
-  "name": "v9helper-transform-style-object",
-  "version": "0.0.8",
-  "sideEffects": false,
-  "dependencies": {
-    "v9helper-babel-plugin-shorthands": "^0.0.4"
-  }
-}

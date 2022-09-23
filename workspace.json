@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "projects": {
-    "babel-plugin-shorthands": "libs/babel-plugin-shorthands",
-    "core": "libs/core",
-    "transform-style-object": "libs/transform-style-object",
-    "transform-styles": "apps/transform-styles"
-  }
-}

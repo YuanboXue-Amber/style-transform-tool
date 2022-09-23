@@ -1,0 +1,15 @@
+diff --git a/lib/module.js b/lib/module.js
+index 7112ccb97059195e150e9d6c3f6cb2aaf639a394..4a6fb97d1d932cfc092eed2e27de3bcbd4907270 100644
+--- a/lib/module.js
++++ b/lib/module.js
+@@ -190,6 +190,10 @@ class Module {
+       cacheKey += `:${only.join(',')}`;
+     }
+ 
++    if (filename.includes('node_modules')) {
++      return require(filename)
++    }
++
+     let m = cache[cacheKey];
+ 
+     if (!m) {

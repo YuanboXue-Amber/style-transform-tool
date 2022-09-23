@@ -1,5 +1,16 @@
-const { getJestProjects } = require('@nrwl/jest');
+const { pathsToModuleNameMapper } = require("ts-jest");
+const { compilerOptions } = require("./packages/tsconfig/base.json");
 
 module.exports = {
-  projects: getJestProjects(),
+  preset: "ts-jest",
+  rootDir: ".",
+  transform: {
+    "^.+\\.(ts|tsx)?$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+  modulePathIgnorePatterns: ["dist"],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: "<rootDir>",
+  }),
 };

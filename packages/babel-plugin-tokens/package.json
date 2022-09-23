@@ -1,0 +1,32 @@
+{
+  "name": "v9helper-babel-plugin-tokens",
+  "version": "0.0.1",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "typings": "dist/dts/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest",
+    "clean": "rm -rf dist",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@fluentui/react-northstar": "^0.64.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.19.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "babel-jest": "^29.0.3",
+    "esbuild": "^0.15.9",
+    "eslint": "^8.4.1",
+    "eslint-config-custom": "*",
+    "glob": "^8.0.3",
+    "jest": "^29.0.3",
+    "rollup": "^2.79.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-esbuild": "^4.10.1"
+  }
+}
