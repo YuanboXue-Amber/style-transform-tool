@@ -1,6 +1,12 @@
 {
   "name": "v9helper-transform-style-object",
   "version": "0.0.8",
+  "description": "Transform a style object into makeStyles compatible object",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YuanboXue-Amber/style-transform-tool"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
   "typings": "dist/dts/index.d.ts",

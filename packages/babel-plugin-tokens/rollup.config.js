@@ -46,6 +46,7 @@ export default [
       copy({
         targets: [
           { src: "./README.md", dest: "dist/" },
+          { src: "../../LICENSE", dest: "dist/" },
           {
             src: "./package.json",
             dest: "dist/",
