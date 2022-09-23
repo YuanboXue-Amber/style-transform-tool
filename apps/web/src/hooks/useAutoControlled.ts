@@ -7,6 +7,7 @@ type UseAutoControlledOptions<Value> = {
   initialValue?: Value;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isUndefined = (value: any) => typeof value === "undefined";
 
 /**

@@ -25,7 +25,6 @@ export const ColorTokenDiff: React.FC<ColorTokenDiffProps> = ({
   v0value,
   v9value,
   scheme,
-  token,
 }) => {
   const different = numberOfDiffColors(v0value, v9value);
   if (!different) {
@@ -45,12 +44,9 @@ export const ColorTokenDiff: React.FC<ColorTokenDiffProps> = ({
 };
 ColorTokenDiff.displayName = "ColorTokenDiff";
 
-interface TokenCandidatesProps {
+const TokenCandidates: React.FC<{
   value: ColorTokenValue;
-  scheme: string;
-}
-
-const TokenCandidates: React.FC<TokenCandidatesProps> = ({ value, scheme }) => {
+}> = ({ value }) => {
   const candidates = lookupv9Tokens(value);
   if (candidates.length === 0) {
     return <div>No suggestions 😭</div>;

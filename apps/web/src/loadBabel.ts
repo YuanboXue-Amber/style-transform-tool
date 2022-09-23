@@ -13,6 +13,7 @@ import { transformShorthandsPlugin } from "v9helper-babel-plugin-shorthands";
 // @ts-ignore
 import { transformTokensPlugin } from "v9helper-babel-plugin-tokens";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const plugins: any = {};
 
 plugins["babel-transform-namespaced-styles"] =
@@ -52,6 +53,7 @@ export const transformNameSpacedStyle: TransformNameSpacedStyle = (
       hasMultiSlots: isMultiSlot(resultFromBabel),
     };
   } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { error: (error as any)?.toString() };
   }
 };
@@ -60,6 +62,7 @@ const isMultiSlot = ({ ast }: Pick<BabelFileResult, "ast">) => {
   const slotsNum = (
     ast?.program?.body?.filter(
       (node) => node.type === "ExportNamedDeclaration"
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     )?.[0] as any
   )?.declaration?.declarations?.[0]?.init?.arguments?.[0].properties?.length;
   return slotsNum > 1;
@@ -77,6 +80,7 @@ export const getAllVariables = (code: string): string[] => {
     const exportStmt = ast.body.find(
       (node) => node.type === "ExportDefaultDeclaration"
     );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const slots = (exportStmt as any)?.declaration?.properties;
     slots.forEach((slot: ObjectProperty) => {
       const variableProperties = (slot.value as ObjectExpression)

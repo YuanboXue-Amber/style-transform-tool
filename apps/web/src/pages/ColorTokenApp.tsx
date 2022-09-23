@@ -90,7 +90,6 @@ export const AllTokens = ({ scheme }: { scheme: string }) => {
                 v0value={v0Value}
                 v9value={v9Value}
                 scheme={scheme}
-                token={token}
               />
             </div>
           );
