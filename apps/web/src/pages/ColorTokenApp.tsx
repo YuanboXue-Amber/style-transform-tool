@@ -86,11 +86,7 @@ export const AllTokens = ({ scheme }: { scheme: string }) => {
             <div key={token} style={{ display: "flex", gap: 40 }}>
               <ColorToken name={`${scheme}.${token}`} value={v0Value} />
               <ColorToken name={v0ToV9({ scheme, token })} value={v9Value} />
-              <ColorTokenDiff
-                v0value={v0Value}
-                v9value={v9Value}
-                scheme={scheme}
-              />
+              <ColorTokenDiff v0value={v0Value} v9value={v9Value} />
             </div>
           );
         })}

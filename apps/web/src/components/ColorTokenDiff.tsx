@@ -13,8 +13,6 @@ import { ColorToken } from "./ColorToken";
 export interface ColorTokenDiffProps {
   v0value: ColorTokenValue;
   v9value: ColorTokenValue;
-  scheme: string;
-  token: string;
 }
 
 const preventDefault = (e: React.MouseEvent) => {
@@ -24,7 +22,6 @@ const preventDefault = (e: React.MouseEvent) => {
 export const ColorTokenDiff: React.FC<ColorTokenDiffProps> = ({
   v0value,
   v9value,
-  scheme,
 }) => {
   const different = numberOfDiffColors(v0value, v9value);
   if (!different) {
@@ -38,7 +35,7 @@ export const ColorTokenDiff: React.FC<ColorTokenDiffProps> = ({
         </a>
       }
       on="hover"
-      content={<TokenCandidates scheme={scheme} value={v0value} />}
+      content={<TokenCandidates value={v0value} />}
     />
   );
 };
