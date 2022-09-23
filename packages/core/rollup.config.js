@@ -13,7 +13,7 @@ const dtsDir = "dist/" + path.dirname(packageJson.typings);
 export default [
   {
     input: "src/index.js",
-    external: [],
+    external: [...Object.keys(packageJson.dependencies), "fs", "path"],
     plugins: [esbuild()],
     output: [
       {

@@ -14,7 +14,7 @@ const dtsDir = "dist/" + path.dirname(packageJson.typings);
 export default [
   {
     input: "src/index.js",
-    external: [],
+    external: Object.keys(packageJson.dependencies),
     plugins: [esbuild(), json()],
     output: [
       {
@@ -24,6 +24,7 @@ export default [
         preserveModulesRoot: "src",
         sourcemap: true,
         entryFileNames: "[name].js",
+        exports: "named",
       },
       {
         dir: esmDir,
@@ -32,6 +33,7 @@ export default [
         preserveModulesRoot: "src",
         sourcemap: true,
         entryFileNames: "[name].js",
+        exports: "named",
       },
     ],
   },
