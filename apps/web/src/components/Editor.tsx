@@ -23,6 +23,7 @@ export type TokenOutputProps = {
   style?: StyleObj;
   className: string;
   children: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [otherProp: string]: any;
 };
 
