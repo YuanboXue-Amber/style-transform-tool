@@ -13,7 +13,9 @@
     "format": "prettier --write \"**/*.{js,ts,tsx,md,yml,json}\"",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "check-dependencies": "syncpack list-mismatches --prod --peer"
+    "check-dependencies": "syncpack list-mismatches --prod --peer",
+    "version:snapshot": "yarn changeset version --snapshot",
+    "publish": "yarn changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.4",
