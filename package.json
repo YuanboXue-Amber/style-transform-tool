@@ -15,7 +15,7 @@
     "test": "turbo run test",
     "check-dependencies": "syncpack list-mismatches --prod --peer",
     "version:snapshot": "yarn changeset version --snapshot",
-    "publish": "yarn changeset publish"
+    "publish": "yarn changeset publish --tag testing-new-feature"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.4",
