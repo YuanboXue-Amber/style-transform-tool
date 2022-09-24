@@ -1,6 +1,6 @@
 {
   "name": "v9helper-babel-plugin-tokens",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Babel plugin to identify @fluentui/react-northstar tokens in makeStyles call and transform it",
   "license": "MIT",
   "repository": {
