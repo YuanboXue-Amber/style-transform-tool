@@ -14,6 +14,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "check-dependencies": "syncpack list-mismatches --prod --peer",
+    "change": "yarn changeset",
     "version:snapshot": "yarn changeset version --snapshot",
     "publish": "yarn changeset publish --tag testing-new-feature"
   },
