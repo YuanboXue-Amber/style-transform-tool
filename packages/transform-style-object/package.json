@@ -1,6 +1,6 @@
 {
   "name": "v9helper-transform-style-object",
-  "version": "0.0.8",
+  "version": "0.0.0-20220924231218",
   "description": "Transform a style object into makeStyles compatible object",
   "license": "MIT",
   "repository": {
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@babel/standalone": "^7.19.2",
-    "v9helper-babel-plugin-shorthands": "*",
-    "v9helper-babel-plugin-tokens": "*"
+    "v9helper-babel-plugin-shorthands": "0.0.0-20220924231218",
+    "v9helper-babel-plugin-tokens": "0.0.0-20220924231218"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.1",
