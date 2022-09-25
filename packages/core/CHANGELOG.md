@@ -1,5 +1,14 @@
 # v9helper
 
+## 0.0.11
+
+### Patch Changes
+
+- a5acebf: Dependency update
+- Updated dependencies [a5acebf]
+  - v9helper-babel-plugin-shorthands@0.0.6
+  - v9helper-babel-plugin-tokens@0.0.3
+
 ## 0.0.10
 
 ### Patch Changes

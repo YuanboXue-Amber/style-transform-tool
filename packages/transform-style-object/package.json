@@ -1,6 +1,6 @@
 {
   "name": "v9helper-transform-style-object",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Transform a style object into makeStyles compatible object",
   "license": "MIT",
   "repository": {
