@@ -1,5 +1,11 @@
 # v9helper-transform-style-object
 
+## 0.0.11
+
+### Patch Changes
+
+- f15782e: bump fluentui and griffel
+
 ## 0.0.10
 
 ### Patch Changes
