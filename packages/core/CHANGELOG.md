@@ -1,5 +1,14 @@
 # v9helper
 
+## 0.0.12
+
+### Patch Changes
+
+- 258ca0c: bump fluentui and griffel version
+- Updated dependencies [258ca0c]
+  - v9helper-babel-plugin-shorthands@0.0.7
+  - v9helper-babel-plugin-tokens@0.0.4
+
 ## 0.0.11
 
 ### Patch Changes
