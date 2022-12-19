@@ -30,6 +30,6 @@
     "@linaria/babel-preset@^3.0.0-beta.15": "patch:@linaria/babel-preset@npm%3A3.0.0-beta.23#./.yarn/patches/@linaria-babel-preset-npm-3.0.0-beta.23-1604e3cf92.patch",
     "@linaria/babel-preset@^3.0.0-beta.23": "patch:@linaria/babel-preset@npm%3A3.0.0-beta.23#./.yarn/patches/@linaria-babel-preset-npm-3.0.0-beta.23-1604e3cf92.patch",
     "@fluentui/react-icons-northstar": "0.65.0",
-    "@griffel/react": "1.4.2"
+    "@griffel/react": "1.5.0"
   }
 }
