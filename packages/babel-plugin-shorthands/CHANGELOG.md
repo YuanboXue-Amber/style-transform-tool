@@ -1,5 +1,11 @@
 # v9helper-babel-plugin-shorthands
 
+## 0.0.8
+
+### Patch Changes
+
+- 95da87f: fluent ui v9 upgrade
+
 ## 0.0.7
 
 ### Patch Changes

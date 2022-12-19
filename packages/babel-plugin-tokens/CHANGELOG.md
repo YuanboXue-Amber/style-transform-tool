@@ -1,5 +1,11 @@
 # v9helper-babel-plugin-tokens
 
+## 0.0.5
+
+### Patch Changes
+
+- 95da87f: fluent ui v9 upgrade
+
 ## 0.0.4
 
 ### Patch Changes
