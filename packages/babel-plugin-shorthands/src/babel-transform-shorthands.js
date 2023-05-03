@@ -44,9 +44,18 @@ export const transformShorthandsPlugin = ({ types: t }) => {
                 if (supportedShorthandsKeys.includes(keyName)) {
                   let args = [];
                   if (t.isStringLiteral(value)) {
-                    args = value.node.value
-                      .split(" ")
-                      .map((token) => t.stringLiteral(token.trim()));
+                    if (keyName === "flex") {
+                      args = value.node.value.split(" ").map((token) => {
+                        if (!isNaN(token)) {
+                          return t.numericLiteral(+token);
+                        }
+                        return t.stringLiteral(token.trim());
+                      });
+                    } else {
+                      args = value.node.value
+                        .split(" ")
+                        .map((token) => t.stringLiteral(token.trim()));
+                    }
                   } else if (t.isTemplateLiteral(value)) {
                     args = splitTemplateLiteral({ path: value, t });
                   } else {

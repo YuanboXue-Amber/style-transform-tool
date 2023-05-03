@@ -103,4 +103,32 @@ export const styles = {
       };"
     `);
   });
+
+  it.only("transform flex shorthand into number instead of string correctly", () => {
+    const code = `
+export const useStyles = makeStyles({
+  root: {
+    flex: "1 1 100px",
+  },
+  test: {
+    flex: "1 100px",
+  },
+});
+`;
+
+    expect(
+      Babel.transformSync(code, {
+        babelrc: false,
+        configFile: false,
+        plugins: [[transformShorthandsPlugin]],
+      }).code
+    ).toMatchInlineSnapshot(`
+      "export const useStyles = makeStyles({
+        root: { ...shorthands.flex(1, 1, "100px")
+        },
+        test: { ...shorthands.flex(1, "100px")
+        }
+      });"
+    `);
+  });
 });
