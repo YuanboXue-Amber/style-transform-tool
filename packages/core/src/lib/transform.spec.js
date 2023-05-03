@@ -76,8 +76,7 @@ describe("transform", () => {
       "export const useStyles = makeStyles({
         root: {
           fontSize: tokens.fontSizeBase300,
-          // FIXME: ⚠️ No v9 matching found for token fontWeightBold, using its value \`700\` as placeholder
-          fontWeight: "700",
+          fontWeight: tokens.fontWeightBold,
           backgroundColor: tokens.colorNeutralBackground1,
           ...shorthands.border("solid", "0.1rem", tokens.colorNeutralStroke1),
           // FIXME: ⚠️ No v9 matching found for token borderRadiusMedium, using its value \`4px\` as placeholder
