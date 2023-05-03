@@ -104,7 +104,7 @@ export const styles = {
     `);
   });
 
-  it.only("transform flex shorthand into number instead of string correctly", () => {
+  it("transform flex shorthand into number instead of string correctly", () => {
     const code = `
 export const useStyles = makeStyles({
   root: {
