@@ -44,6 +44,7 @@
     "foregroundFocus2": "colorNeutralForeground3Hover",
     "foregroundFocus3": "colorNeutralForegroundInvertedHover",
 
+    "backgroundFocus": "colorNeutralBackground4Hover",
     "backgroundFocus1": "colorNeutralBackground4Hover",
     "backgroundFocus2": "colorNeutralBackground5Hover",
     "backgroundFocus3": "colorNeutralBackground3Hover",
@@ -73,7 +74,9 @@
 
     "borderDisabled": "colorNeutralStrokeDisabled",
     "borderFocus": "colorStrokeFocus2",
-    "borderFocusWithin": "colorStrokeFocus1"
+    "borderFocusWithin": "colorStrokeFocus1",
+
+    "shadow": "colorNeutralForeground1Static"
   },
   "brand": {
     "foreground": "colorBrandForeground1",
@@ -87,6 +90,7 @@
     "foregroundPressed1": "colorNeutralForegroundInvertedPressed",
 
     "background": "colorBrandBackground",
+    "background1": "colorBrandBackground2",
     "backgroundHover": "colorBrandBackgroundHover",
 
     "border": "colorNeutralStroke2",
@@ -101,19 +105,38 @@
     "foreground1": "colorPaletteBerryForeground3"
   },
   "green": {
-    "background": "colorPaletteGreenBackground3",
-    "border": "colorPaletteGreenBorder1",
-    "background2": "colorPaletteGreenBackground1",
-    "foreground2": "colorPaletteGreenForeground3"
+    "foreground": "colorPaletteLightGreenForeground1",
+    "foreground2": "colorPaletteLightGreenForeground3",
+    "background": "colorPaletteLightGreenBackground3",
+    "background1": "colorPaletteLightGreenBackground3",
+    "background2": "colorPaletteLightGreenBackground1",
+    "border": "colorPaletteLightGreenBorder1",
+    "border1": "colorPaletteLightGreenBorder2"
   },
   "yellow": {
-    "foreground": "colorPaletteYellowForeground3",
-    "background": "colorPaletteYellowBackground2",
-    "border": "colorPaletteYellowBorder1"
+    "foreground": "colorPaletteMarigoldForeground3",
+    "foreground4": "colorPaletteMarigoldForeground2",
+    "background": "colorPaletteMarigoldBackground3",
+    "background2": "colorPaletteMarigoldBackground3",
+    "background1": "colorPaletteMarigoldBackground1",
+    "background3": "colorPaletteMarigoldBackground1",
+    "border": "colorPaletteMarigoldBorder1",
+    "border1": "colorPaletteMarigoldBorder2"
   },
   "orange": {
+    "foreground1": "colorPaletteDarkOrangeForeground3",
     "background": "colorPaletteDarkOrangeBackground3",
-    "border": "colorNeutralStroke1Selected"
+    "background1": "colorPaletteDarkOrangeBackground3",
+    "border": "colorPaletteDarkOrangeBorderActive"
+  },
+  "red": {
+    "foreground1": "colorPaletteRedForeground1",
+    "background": "colorPaletteRedBackground3",
+    "background2": "colorPaletteRedBackground3",
+    "background3": "colorPaletteRedBackground3",
+    "background1": "colorPaletteRedBackground1",
+    "border": "colorPaletteRedBorder1",
+    "border1": "colorPaletteRedBorder2"
   },
   "font": {
     "size": {
