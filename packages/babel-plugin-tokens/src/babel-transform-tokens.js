@@ -136,7 +136,13 @@ const transfromFont = (t, path) => {
 
   if (keyName === "fontWeight" && valueName.includes("fontWeight")) {
     const v0Token = valueName.slice(10).toLowerCase();
-    transform(v0Token, v0ToV9fontWeight);
+    if (valueName === "fontWeightSemilight") {
+      value.replaceWith(t.stringLiteral("300"));
+    } else if (valueName === "fontWeightLight") {
+      value.replaceWith(t.stringLiteral("200"));
+    } else {
+      transform(v0Token, v0ToV9fontWeight);
+    }
     return;
   }
 

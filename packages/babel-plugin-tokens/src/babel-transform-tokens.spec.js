@@ -3,11 +3,14 @@ import { transformTokensPlugin } from "./babel-transform-tokens";
 
 describe("transformStyleObject", () => {
   it.each`
-    style                               | newStyle
-    ${"fontSize: medium"}               | ${"fontSize: tokens.fontSizeBase300"}
-    ${"fontWeight: fontWeightRegular"}  | ${"fontWeight: tokens.fontWeightRegular"}
-    ${"fontWeight: fontWeightSemibold"} | ${"fontWeight: tokens.fontWeightSemibold"}
-    ${"lineHeight: lineHeightMedium"}   | ${"lineHeight: tokens.lineHeightBase300"}
+    style                                | newStyle
+    ${"fontSize: medium"}                | ${"fontSize: tokens.fontSizeBase300"}
+    ${"fontWeight: fontWeightLight"}     | ${'fontWeight: "200"'}
+    ${"fontWeight: fontWeightSemilight"} | ${'fontWeight: "300"'}
+    ${"fontWeight: fontWeightRegular"}   | ${"fontWeight: tokens.fontWeightRegular"}
+    ${"fontWeight: fontWeightSemibold"}  | ${"fontWeight: tokens.fontWeightSemibold"}
+    ${"fontWeight: fontWeightBold"}      | ${"fontWeight: tokens.fontWeightBold"}
+    ${"lineHeight: lineHeightMedium"}    | ${"lineHeight: tokens.lineHeightBase300"}
   `("transform font styles correctly", ({ style, newStyle }) => {
     const code = `
 export const useStyles = makeStyles({

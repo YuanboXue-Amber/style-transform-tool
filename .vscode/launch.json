@@ -9,6 +9,12 @@
       "name": "Run babel-plugin-shorthands test",
       "request": "launch",
       "type": "node-terminal"
+    },
+    {
+      "command": ".yarn/releases/yarn-3.2.3.cjs workspace v9helper-babel-plugin-tokens test --watch",
+      "name": "Run babel-plugin-tokens test",
+      "request": "launch",
+      "type": "node-terminal"
     }
   ]
 }
