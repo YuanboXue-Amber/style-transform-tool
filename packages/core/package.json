@@ -1,6 +1,6 @@
 {
   "name": "v9helper",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "CLI to transform @fluentui/react-northstar styles per variable",
   "license": "MIT",
   "repository": {

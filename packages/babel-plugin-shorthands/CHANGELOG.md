@@ -1,5 +1,11 @@
 # v9helper-babel-plugin-shorthands
 
+## 0.0.9
+
+### Patch Changes
+
+- 2eaf3af: Update fluent version. Adds more color mapping. Fix flex shorthand. Add px to Rem.
+
 ## 0.0.8
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # v9helper-babel-plugin-tokens
 
+## 0.0.6
+
+### Patch Changes
+
+- 2eaf3af: Update fluent version. Adds more color mapping. Fix flex shorthand. Add px to Rem.
+
 ## 0.0.5
 
 ### Patch Changes

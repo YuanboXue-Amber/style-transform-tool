@@ -1,6 +1,6 @@
 {
   "name": "v9helper-babel-plugin-shorthands",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Babel plugin to identify CSS shorthands in makeStyles call and transform it",
   "license": "MIT",
   "repository": {
