@@ -127,7 +127,8 @@
     "weight": {
       "regular": "fontWeightRegular",
       "medium": "fontWeightMedium",
-      "semibold": "fontWeightSemibold"
+      "semibold": "fontWeightSemibold",
+      "bold": "fontWeightBold"
     },
     "lineHeight": {
       "smaller": "lineHeightBase100",
