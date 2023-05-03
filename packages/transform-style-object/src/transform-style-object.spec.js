@@ -10,7 +10,7 @@ describe("transformStyleObject", () => {
       fontSize: medium,
     }`)
     ).toMatchInlineSnapshot(`
-      " { ...shorthands.margin("1rem", "0", "1rem", "2rem"),
+      " { ...shorthands.margin("10px", "0", "10px", "20px"),
           color: tokens.colorNeutralForeground2,
           fontWeight: tokens.fontWeightRegular,
           fontSize: tokens.fontSizeBase300
@@ -61,7 +61,7 @@ describe("transformStyleObject", () => {
           // FIXME: ❌ unsupported css property, please manually expand shorthand
           textDecoration: "underline overline dotted",
           ...shorthands.borderRadius(1),
-          ...shorthands.border(".2rem", "solid", tokens.colorNeutralForeground2Hover),
+          ...shorthands.border("2px", "solid", tokens.colorNeutralForeground2Hover),
           ":hover": {
             color: tokens.colorNeutralForeground2Hover,
             backgroundColor: tokens.colorNeutralBackground4Hover
@@ -78,8 +78,7 @@ describe("transformStyleObject", () => {
           // Warning: please notice v0 'large' is 18px; it maps to v9 fontSizeBase400 (16px) or fontSizeBase500 (20px)
           fontSize: tokens.fontSizeBase400,
           fontWeight: tokens.fontWeightSemibold,
-          // FIXME: ❌ No v9 matching found for token fontWeightBold
-          fontWeight: fontWeightBold,
+          fontWeight: tokens.fontWeightBold,
           lineHeight: tokens.lineHeightBase300
         }
       "

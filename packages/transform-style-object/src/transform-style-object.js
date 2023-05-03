@@ -35,7 +35,26 @@ export const checkForConditionalExpressionPlugin = ({ types: t }) => {
   };
 };
 
-const transformShorthandsInStyleObject = (code) => {
+// transform 1 rem to 10px
+export const transfromRemToPxPlugin = ({ types: t }) => {
+  return {
+    visitor: {
+      StringLiteral(path) {
+        const value = path.node.value;
+        if (
+          typeof value === "string" &&
+          value.endsWith("rem") &&
+          !isNaN(parseFloat(value))
+        ) {
+          const newValue = parseFloat(value) * 10 + "px"; // 1rem = 10px
+          path.replaceWith(t.stringLiteral(newValue));
+        }
+      },
+    },
+  };
+};
+
+const transformShorthandsInStyleObject = (code, transfromRemToPx) => {
   try {
     const resultFromBabel = Babel.transform(
       `export const useStyles = makeStyles({special_root: \n ${code}})`,
@@ -48,6 +67,7 @@ const transformShorthandsInStyleObject = (code) => {
           [checkForConditionalExpressionPlugin],
           [transformTokensPlugin],
           [transformShorthandsPlugin],
+          transfromRemToPx && [transfromRemToPxPlugin],
         ],
       }
     );
@@ -81,9 +101,9 @@ const removeCommentsFromStyleObject = (userCode) =>
     .join("\n")
     .trim();
 
-export function transformStylesObject(userCode) {
+export function transformStylesObject(userCode, transfromRemToPx = true) {
   if (isUserCodeObject(userCode)) {
-    return transformShorthandsInStyleObject(userCode);
+    return transformShorthandsInStyleObject(userCode, transfromRemToPx);
   }
   return userCode;
 }
