@@ -29,7 +29,7 @@ describe("transformStyleObject", () => {
         top: "50%",
         overflow: "auto",
         transform: "translateX(-50%) translateY(-50%)",
-        textDecoration: "underline overline dotted",
+        textDecoration: "underline dotted",
         borderRadius: 1,
         border: \`.2rem solid $\{colorSchemeDefault.foregroundHover}\`,
         ":hover": {
@@ -58,8 +58,7 @@ describe("transformStyleObject", () => {
           top: "50%",
           ...shorthands.overflow("auto"),
           transform: "translateX(-50%) translateY(-50%)",
-          // FIXME: ❌ unsupported css property, please manually expand shorthand
-          textDecoration: "underline overline dotted",
+          ...shorthands.textDecoration("underline", "dotted"),
           ...shorthands.borderRadius(1),
           ...shorthands.border("2px", "solid", tokens.colorNeutralForeground2Hover),
           ":hover": {
