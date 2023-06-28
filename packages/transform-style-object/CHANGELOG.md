@@ -1,5 +1,14 @@
 # v9helper-transform-style-object
 
+## 0.0.13
+
+### Patch Changes
+
+- c5578d8: update griffel/fluent version
+- Updated dependencies [c5578d8]
+  - v9helper-babel-plugin-shorthands@0.0.10
+  - v9helper-babel-plugin-tokens@0.0.7
+
 ## 0.0.12
 
 ### Patch Changes

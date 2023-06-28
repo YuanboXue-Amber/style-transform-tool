@@ -1,5 +1,11 @@
 # v9helper-babel-plugin-shorthands
 
+## 0.0.10
+
+### Patch Changes
+
+- c5578d8: update griffel/fluent version
+
 ## 0.0.9
 
 ### Patch Changes

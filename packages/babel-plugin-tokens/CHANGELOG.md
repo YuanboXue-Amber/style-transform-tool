@@ -1,5 +1,11 @@
 # v9helper-babel-plugin-tokens
 
+## 0.0.7
+
+### Patch Changes
+
+- c5578d8: update griffel/fluent version
+
 ## 0.0.6
 
 ### Patch Changes
