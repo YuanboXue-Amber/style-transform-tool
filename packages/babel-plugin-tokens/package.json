@@ -22,7 +22,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@fluentui/react-northstar": "^0.66.4"
+    "@fluentui/react-northstar": "^0.66.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
